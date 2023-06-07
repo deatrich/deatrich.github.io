@@ -1,1 +1,0 @@
-# deatrich.github.io
