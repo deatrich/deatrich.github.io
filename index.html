@@ -1,11 +1,104 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<HTML>
+<!DOCTYPE HTML>
+<HTML lang="en">
 <HEAD>
-<TITLE>GitHub Project Page for Denice</TITLE>
-<META NAME='viewport' CONTENT='width=device-width, INITIAL-SCALE=1'>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<TITLE>Denice's GitHub Projects</TITLE>
+<META NAME="viewport" CONTENT="width=device-width, INITIAL-SCALE=1">
+<LINK HREF="favicon.png" REL="icon">
+<LINK REL="stylesheet" TYPE="text/css" HREF="mvp.css">
+<LINK REL="stylesheet" TYPE="text/css"
+  HREF="https://fonts.googleapis.com/css?family=Noto+Emoji">
+
+<STYLE>
+  .liststatus {
+    margin: 1em 0;
+    padding: 0 1.5em;
+    list-style-type: none;
+    font-family: "Noto Emoji";
+  }
+  .liststatus > LI::before {
+    display: inline-block;
+    padding-left: .3em;
+    padding-right: .5em;
+    width: 1.0em;
+    font-size: 1.2em;
+    margin-top: 10px;
+    margin-right: 10px;
+    border: 1px solid black;
+    background: #dadbdd;
+  }
+  .liststatus > LI.finished::before {
+    content: "\2714"; /* heavy check mark */
+    color: green;
+  }
+  .liststatus > LI.inprogress::before {
+    content: "\270d"; /* writing hand */
+    color: red;
+  }
+  .liststatus > LI.planning::before {
+    content: "\1f914"; /* thinking */
+    color: #0020C2;
+  }
+  .liststatus > LI.empty::before {
+    content: "\ff1f"; /* question mark */
+    color: #b8860b;
+  }
+  TD {
+    text-align: center;
+    font-size: 1.2em;
+    background: #dadbdd;
+  }
+</STYLE>
 </HEAD>
-<BODY>
-<H1>Hello World!</H1>
+
+<BODY style="margin: 10px">
+<H1>Denice's GitHub Projects</H1>
+<P>
+I am cleaning up a mishmash of directories collected since the '90s in $HOME.
+I decided to take some of my notes from ~/adm/ along with my recent experience
+setting up 24x7 home servers and start a collection of mostly how-to guides
+which are useful for playing at home.  My work expertise is SysAdmin/DevOps,
+so naturally some of my preferences and biases are evident.  I like details,
+I like control, and I like trimming bloat.
+</P>
+<P>
+Note that an 'implemented' project doesn't necessarily mean it's done -- it 
+just means its a good start.
+</P>
+<P>
+I have some other project ideas which I'll add in time...
+</P>
+
+<OL class="liststatus checked">
+<LI class="inprogress">Server Project:
+ <A HREF="https://deatrich.github.io/linux-home-server/linux-server.html">
+ Linux Home Server</A></LI>
+<LI class="finished">Tools:
+ <A HREF="https://github.com/deatrich/tools">A few Linux scripts</A></LI>
+<LI class="planning">RPM/APT Notes</LI>
+<LI class="planning">Ansible at Home</LI>
+<LI class="empty">...</LI>
+</OL>
+<TABLE style="border: 1px solid;">
+<TR>
+<TH COLSPAN="2" style="text-decoration:underline;">Legend</TH>
+</TR>
+<TR>
+<TH style="color:green;">Project implemented</TH>
+<TD style="color:green;">&#x2714;</TD>
+</TR>
+<TR>
+<TH style="color:red;">Project in progress</TH>
+<TD style="color:red;">&#x270d;</TD>
+</TR>
+<TR>
+<TH style="color:#0020C2;">Project in planning stage</TH>
+<TD style="color:#0020C2;font-family: 'Noto Emoji'">&#x1f914;</TD>
+</TR>
+<TR>
+<TH style="color:#b8860b;">Future topics</TH>
+<TD style="color:#b8860b;">&#xff1f;</TD>
+</TR>
+</TABLE>
 </BODY>
 </HTML>
-
