@@ -1248,10 +1248,9 @@ AllowUsers myname@192.168.1.* *<span class="citation" data-cites="localhost">@lo
 <span id="cb46-5"><a href="#cb46-5" aria-hidden="true"></a>192.168.1.90:/home/myname      50G  464M   50G   1% /home/myname</span></code></pre></div>
 <!-- -->
 <h1 id="creating-a-web-server">Creating a Web Server</h1>
-<p>Setting up an [Apache][apache] web server is a great way to learn about web technologies. [Nginx][nginx] is another web server available on Ubuntu, but we will concentrate instead on the Apache offering.</p>
-<p>We start with installing and doing an initial configuration of an http-based service listening on port 80. Then we enable an https-based service listening on port 443. Enabling https requires setting up a certificate. Since the web server is only in your home network it is tricky to get an official web certificate. Instead we will create a self-signed certificate, and coax web clients to trust it. Another option is to build your own [certificate authority][certauth].</p>
+<p>Setting up an <a href="https://ubuntu.com/server/docs/web-servers-apache">Apache</a> web server is a great way to learn about web technologies. <a href="https://en.wikipedia.org/wiki/Nginx">Nginx</a> is another web server available on Ubuntu, but we will concentrate instead on the Apache offering.</p>
+<p>We start with installing and doing an initial configuration of an http-based service listening on port 80. Then we enable an https-based service listening on port 443. Enabling https requires setting up a certificate. Since the web server is only in your home network it is tricky to get an official web certificate. Instead we will create a self-signed certificate, and coax web clients to trust it. Another option is to build your own <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-a-certificate-authority-ca-on-ubuntu-20-04">certificate authority</a>.</p>
 <p>Finally we will look at configuring ownership of some of the apache directory infrastructure for future web projects and configuring a few virtual hosts.</p>
-<p>[certauth] https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-a-certificate-authority-ca-on-ubuntu-20-04</p>
 <h2 id="installing-and-testing-apache-2.4">Installing and Testing Apache 2.4</h2>
 <p>Install the apache software. The ssl-cert package allows us to later create an SSL certificate for the https service, so we will install it as well.</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode shell"><code class="sourceCode shell"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true"></a><span class="co">// The list of enabled apache modules on an Ubuntu system is also shown</span></span>
@@ -1320,7 +1319,6 @@ AllowUsers myname@192.168.1.* *<span class="citation" data-cites="localhost">@lo
 <span id="cb49-19"><a href="#cb49-19" aria-hidden="true"></a>   Apache2 Default Page</span>
 <span id="cb49-20"><a href="#cb49-20" aria-hidden="true"></a>   It works!</span>
 <span id="cb49-21"><a href="#cb49-21" aria-hidden="true"></a>   ...</span></code></pre></div>
-<p>[apache] https://ubuntu.com/server/docs/web-servers-apache [nginx] https://en.wikipedia.org/wiki/Nginx</p>
 <h2 id="generating-a-self-signed-certificate-and-enabling-https">Generating a Self-Signed Certificate and Enabling https</h2>
 <p>Before we enable listening on port 443 we will generate a self-signed SSL certificate. I have a script named <a href="https://github.com/deatrich/tools/blob/main/addcert.sh"><em>addcert.sh</em></a> which will generate the needed certificate files. You need to use a configuration file named <a href="https://github.com/deatrich/tools/blob/main/etc/addcert.cnf"><em>addcert.cnf</em></a> and edit it to use your certificate details:</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode shell"><code class="sourceCode shell"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true"></a><span class="kw">$ mkdir ~/certs</span></span>
@@ -1331,10 +1329,10 @@ AllowUsers myname@192.168.1.* *<span class="citation" data-cites="localhost">@lo
 <span id="cb50-6"><a href="#cb50-6" aria-hidden="true"></a><span class="kw">$ nano addcert.cnf</span></span>
 <span id="cb50-7"><a href="#cb50-7" aria-hidden="true"></a><span class="kw">$ ~/bin/addcert.sh</span></span>
 <span id="cb50-8"><a href="#cb50-8" aria-hidden="true"></a>Certificate request self-signature ok</span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true"></a>subject=C = CA, ST = British Columbia, L = Cranbrook, O = Home, CN = pi.home, emailAddress = some.email@somewhere.com</span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true"></a>-r--r--r-- 1 deatrich deatrich 2000 Jun 21 10:00 server.crt</span>
-<span id="cb50-11"><a href="#cb50-11" aria-hidden="true"></a>-r--r--r-- 1 deatrich deatrich 1740 Jun 21 10:00 server.csr</span>
-<span id="cb50-12"><a href="#cb50-12" aria-hidden="true"></a>-r-------- 1 deatrich deatrich 3272 Jun 21 10:00 server.key</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true"></a>subject=C = CA, ST = British Columbia, ... CN = pi.home, emailAddress = some.email@somewhere.com</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true"></a>-r--r--r-- 1 myname myname 2000 Jun 21 10:00 server.crt</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true"></a>-r--r--r-- 1 myname myname 1740 Jun 21 10:00 server.csr</span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true"></a>-r-------- 1 myname myname 3272 Jun 21 10:00 server.key</span>
 <span id="cb50-13"><a href="#cb50-13" aria-hidden="true"></a>addcert.sh:  SVP copy server files into place and change ownership to root</span>
 <span id="cb50-14"><a href="#cb50-14" aria-hidden="true"></a></span>
 <span id="cb50-15"><a href="#cb50-15" aria-hidden="true"></a><span class="co">// You can query the text version of your certificate:</span></span>
@@ -1370,7 +1368,7 @@ AllowUsers myname@192.168.1.* *<span class="citation" data-cites="localhost">@lo
 <span id="cb52-7"><a href="#cb52-7" aria-hidden="true"></a>Considering dependency socache_shmcb for ssl:</span>
 <span id="cb52-8"><a href="#cb52-8" aria-hidden="true"></a>Enabling module socache_shmcb.</span>
 <span id="cb52-9"><a href="#cb52-9" aria-hidden="true"></a>Enabling module ssl.</span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true"></a>See /usr/share/doc/apache2/README.Debian.gz on how to configure SSL and create self-signed certificates.</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true"></a>See /usr/share/doc/apache2/README.Debian.gz on how to ... and create self-signed certificates.</span>
 <span id="cb52-11"><a href="#cb52-11" aria-hidden="true"></a>To activate the new configuration, you need to run:</span>
 <span id="cb52-12"><a href="#cb52-12" aria-hidden="true"></a>  systemctl restart apache2</span>
 <span id="cb52-13"><a href="#cb52-13" aria-hidden="true"></a></span>
@@ -1407,10 +1405,10 @@ AllowUsers myname@192.168.1.* *<span class="citation" data-cites="localhost">@lo
 <span id="cb52-44"><a href="#cb52-44" aria-hidden="true"></a>apache2  549191     www-data   6u  IPv6 1943856      0t0  TCP *:https (LISTEN)</span>
 <span id="cb52-45"><a href="#cb52-45" aria-hidden="true"></a>apache2  549192     www-data   4u  IPv6 1943852      0t0  TCP *:http (LISTEN)</span>
 <span id="cb52-46"><a href="#cb52-46" aria-hidden="true"></a>apache2  549192     www-data   6u  IPv6 1943856      0t0  TCP *:https (LISTEN)</span></code></pre></div>
-<p>Now we want to test the secured web connection connection. Now ask your web browser to accept the certificate; with <em>firefox</em> we select ‘Advanced’ where we see the message<br />
+<p>Now we want to test the secured web connection connection, and ask your web browser to accept the certificate. With <em>firefox</em> we select ‘Advanced’ where we see the message<br />
 </p>
 <p><em>Error code: MOZILLA_PKIX_ERROR_SELF_SIGNED_CERT</em></p>
-<p>We go ahead and accept the risk and we see our default secured web page.</p>
+<p>We go ahead and accept the risk and we see our default secured web page. You only need to do this once.</p>
 <p>Both text mode browsers will warn about self-signed certificates, but also will allow you to connect:</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode shell"><code class="sourceCode shell"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true"></a><span class="kw">$ firefox https://pi.home</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true"></a></span>
@@ -1501,18 +1499,21 @@ AllowUsers myname@192.168.1.* *<span class="citation" data-cites="localhost">@lo
 <span id="cb55-71"><a href="#cb55-71" aria-hidden="true"></a>total 0</span>
 <span id="cb55-72"><a href="#cb55-72" aria-hidden="true"></a>lrwxrwxrwx 1 root root 26 Jun 22 14:11 pi.conf -&gt; ../sites-available/pi.conf</span>
 <span id="cb55-73"><a href="#cb55-73" aria-hidden="true"></a>lrwxrwxrwx 1 root root 28 Jun 22 14:11 test.conf -&gt; ../sites-available/test.conf</span>
-<span id="cb55-74"><a href="#cb55-74" aria-hidden="true"></a><span class="kw">$ $ systemctl status apache2</span></span>
-<span id="cb55-75"><a href="#cb55-75" aria-hidden="true"></a>     ...</span>
-<span id="cb55-76"><a href="#cb55-76" aria-hidden="true"></a>     Active: active (running) since Thu 2023-06-22 14:14:00 MDT; 2s ago</span>
-<span id="cb55-77"><a href="#cb55-77" aria-hidden="true"></a>     ...</span></code></pre></div>
-<p>Now test the changed configurations using <em>links</em></p>
+<span id="cb55-74"><a href="#cb55-74" aria-hidden="true"></a><span class="kw">$ sudo systemctl restart apache2</span></span>
+<span id="cb55-75"><a href="#cb55-75" aria-hidden="true"></a><span class="kw">$ systemctl status apache2</span></span>
+<span id="cb55-76"><a href="#cb55-76" aria-hidden="true"></a>     ...</span>
+<span id="cb55-77"><a href="#cb55-77" aria-hidden="true"></a>     Active: active (running) since Thu 2023-06-22 14:14:00 MDT; 2s ago</span>
+<span id="cb55-78"><a href="#cb55-78" aria-hidden="true"></a>     ...</span></code></pre></div>
+<p>Now test the changed configurations using <em>links</em> and the ‘-source’ argument:</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode shell"><code class="sourceCode shell"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true"></a><span class="kw">$ links -source http://pi.home/ | grep title</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true"></a>    &lt;title&gt;Apache2 Ubuntu Default Page on HTTP (no encryption): It works&lt;/title&gt;</span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true"></a></span>
 <span id="cb56-4"><a href="#cb56-4" aria-hidden="true"></a><span class="kw">$ links -source -ssl.certificates 0 https://pi.home/ | grep title</span></span>
 <span id="cb56-5"><a href="#cb56-5" aria-hidden="true"></a>    &lt;title&gt;Apache2 Ubuntu Default Page on HTTPS (secure): It works&lt;/title&gt;</span></code></pre></div>
-<p>Also, you can always add new sub-directories for web page design, rather than changing ownership inside /var/www/html. For example, create a directory owned by yourself named /var/www/sites and add your own site configuration in <em>/etc/apache2/sites-available/</em> with your new sub-directory path(s) and enable them. The exercise is very similar to the previous example.</p>
-<!-- -->
+<p>Also, you can always add new sub-directories for web page design, rather than changing ownership inside /var/www/html. For example, create a sub-directory owned by yourself named /var/www/sites and add your own site configuration in <em>/etc/apache2/sites-available/</em> with your new sub-directory path(s) and enable them. The exercise is very similar to the previous example.</p>
+<!-- !! need to add logging information -->
+<!-- !! need to add a warning note about the 'include' options in the
+        apache main configuration file -->
 <!--
 ~~~~ {.shell}
 ~~~~
