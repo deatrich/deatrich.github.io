@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Denice Deatrich" />
+  <title>Console Syntax Highlighting</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {  background-color: #f5f5dc; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #0000ff; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #8f008f; font-weight: bold; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #ff0000; font-weight: bold; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://latex.now.sh/style.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Console Syntax Highlighting</h1>
+<p class="author">Denice Deatrich
+  <br />Created: August 2023
+  <br />Last update: 22 August 2023
+</p>
+</header>
+<!-- Pandoc metadata, mostly used when generating PDF
+
+     Solution for starting a new page for major sections of PDF output
+     in metadata (documentclass, header-includes) is decscribed at:
+     https://superuser.com/a/1436367
+
+     Be sure to change 'title', 'author' and 'date' below:
+-->
+<h2 id="what-is-console-syntax-highlighting">What is Console syntax highlighting</h2>
+<p>While writing a Pandoc Markdown-based guide about creating a <a href="https://github.com/deatrich/linux-home-server/">Linux Home Server</a> I spent some time understanding issues and finding solutions. I then added another guide on <a href="https://github.com/deatrich/doc-with-pandoc-markdown/">getting started</a> with Markdown-based technical guides.</p>
+<p>One of the issues I have dealt with on both occasions is <em>console</em> input/output and syntax-highlighting. When you are helping others understand command line options it is very useful to <strong>highlight</strong> command line console sessions.</p>
+<p>Pandoc uses the Haskell <a href="https://www.stackage.org/package/skylighting"><em>skylighting</em></a> library for syntax highlighting. The highlighting descriptions are written in XML, using syntax descriptions designed for <a href="https://github.com/KDE/syntax-highlighting/tree/master">KDE’s Kate syntax highlighting</a>.</p>
+<p>By adding custom Kate syntax highlighting I was able to present console sessions as fenced code blocks with more interesting syntax highlighting in Pandoc-generated Markdown-based documents.</p>
+<p>By adding custom Vim syntax highlighting for my favourite editor, Gvim (Graphical Vim), then I was able to edit Markdown files with embedded console sessions with the same syntax highlighting as in the final document.</p>
+<p>When the appropriate configuration files are in place then any text file named with a <em>.console</em> filename extension written in console-consistent format will be syntax-highlighted with these editors:</p>
+<ul>
+<li>a <a href="https://en.wikipedia.org/wiki/Vim_(text_editor)">Vim-based</a> editor</li>
+<li>the KDE <a href="https://kate-editor.org/">Kate</a> editor</li>
+</ul>
+<p>I have not yet looked at syntax highlighting console sessions for other editors like gedit, pluma or emacs.</p>
+<h2 id="console-is-not-a-language"><em>Console</em> is not a language</h2>
+<p>Most syntax highlighting is based on highlighting the specific syntax of various computer languages. ‘Console’ is instead a contrived set of syntax requirements to represent console input/output for Linux and UNIX-based command line sessions.</p>
+<h2 id="getting-the-files">Getting the files</h2>
+<p>The github repository at <a href="https://github.com/deatrich/console-syntax">https://github.com/deatrich/console-syntax</a> contains the needed configuration files.</p>
+<p>This is the list of relevant configuration and test files:</p>
+<ul>
+<li>test.console</li>
+<li>vim.ftdetect</li>
+<li>vim.syntax</li>
+<li>vimrc.example</li>
+<li>console.xml</li>
+</ul>
+<p>The <em>test.console</em> file can be used to test whether your local configuration works. It also explains the simple syntax requirements which invoke the highlighter.</p>
+<p>The contents of this file are <a href="#test.console">embedded in a fenced code block</a> at the end of this document.</p>
+<h2 id="configure-gvimvim">Configure Gvim/Vim</h2>
+<p>For the Gvim or Vim editors, the Vim files should be installed in your home directory:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">// Change directories to your home directory:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">$ cd</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="co">// Make the necessary subdirectories:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">$ mkdir -p .vim/syntax .vim/ftdetect</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">// Copy the files into place:</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="kw">$ cp /path/to/vim.syntax ~/.vim/syntax/console.vim</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="kw">$ cp /path/to/vim.ftdetect ~/.vim/ftdetect/console.vim</span></span></code></pre></div>
+<p>To have the same console syntax highlighting embedded in Markdown files then enable the console syntax in your <em>.vimrc</em> file by copying the settings in <em>vimrc.example</em>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">// Create the file if it does not exist; otherwise edit the file.  Add</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">//  the &#39;fenced languages&#39; stanza:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">$ vim ~/.vimrc</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="kw">$ grep fenced_languages ~/.vimrc</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>let g:markdown_fenced_languages = [&#39;console&#39;]</span></code></pre></div>
+<h2 id="configure-kate">Configure Kate</h2>
+<p>For the Kate editor, it will depend on the version of Kate you are using. In my case on Ubuntu LTS 22.04 the console.xml file is installed this way:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">// Change directories to your home directory:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">$ cd</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">// Make the necessary subdirectory and copy the XML file there:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="kw">$ mkdir -p .local/share/katepart5/syntax</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="kw">$ cp /path/to/console.xml ~/.local/share/katepart5/syntax/</span></span></code></pre></div>
+<p>To have the same console syntax highlighting with Kate embedded in Markdown files then it is a bit more complicated than the <em>Vim</em> example. You need to copy the current Markdown XML syntax file from Kate, and add a few lines to enable fenced console code blocks. I made it work by adding the lines just above the settings for <em>bash</em> in two places in the <em>markdown.xml</em> file:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">$ cd ~/.local/share/katepart5/syntax/</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co">// wget the file, or just browse to this link and copy/paste it into a file</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co">// name &#39;markdown.xml&#39;:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">$ wget -N -nd \</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="kw">https://raw.githubusercontent.com/jgm/skylighting/master/skylighting-core/xml/markdown.xml</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="co">// Keep a copy of the original file:</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="kw">$ cp -p markdown.xml markdown.xml.orig</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="co">// Edit the file, adding the XML lines noted below:</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="kw">$ kate markdown.xml</span></span></code></pre></div>
+<p>The lines to add to <em>markdown.xml</em> are these. Most of the fenced code block XML entries resemble each other. Look for <em>find-lang-fenced-code</em> to discover the languages with embedded syntax highlighting:</p>
+<pre><code>&lt;!-- just before first &#39;bash-code&#39; line add this: --&gt;
+ &lt;RegExpr attribute=&quot;Fenced Code&quot; context=&quot;#pop!console-code&quot;
+  String=&quot;&amp;fcode;\s*(?:console)&amp;end;&quot; insensitive=&quot;true&quot;
+  beginRegion=&quot;code-block&quot;/&gt;
+
+&lt;!-- just before second &#39;bash-code&#39; section add this --&gt;
+ &lt;context attribute=&quot;Normal Text&quot; lineEndContext=&quot;#stay&quot; name=&quot;console-code&quot;&gt;
+     &lt;IncludeRules context=&quot;code&quot;/&gt;
+     &lt;IncludeRules context=&quot;##console&quot; includeAttrib=&quot;true&quot;/&gt;
+ &lt;/context&gt;
+</code></pre>
+<!-- !! note or link about Pandoc and referencing console.xml -->
+<h1 id="test.console">Example <em>console</em> session</h1>
+<div class="sourceCode" id="cb6"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">// ----------------------------------------------------------------------------</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="co">// COMMENTS:</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="co">// Comments are highlighted differently from all other console input/output.</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="co">// In fact, all comments are for instruction only, and are never part of</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="co">// terminal console input/output.</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="co">// Comments are handy when you want to explain what you are doing, and why.</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a><span class="co">// Comments start with 2 forward slashes as the first 2 characters, followed</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="co">// by a manditory space character.</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a><span class="co">// ----------------------------------------------------------------------------</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a><span class="co">// NORMAL CONSOLE OUTPUT MODE:</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a><span class="co">// All console output is in default output mode, which usually means the reverse</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a><span class="co">// of your background colour.  So, if your background is black then normal text</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a><span class="co">// is white or a light colour.  If the background is white then normal text</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true"></a><span class="co">// is black.  As an example, this is a fragment of &#39;dmesg&#39; output:</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true"></a>[Fri Aug 18 08:00:41 2023] RPC: Registered named UNIX socket transport module.</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true"></a>[Fri Aug 18 08:00:41 2023] RPC: Registered udp transport module.</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true"></a>[Fri Aug 18 08:00:41 2023] RPC: Registered tcp transport module.</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true"></a>[Fri Aug 18 08:00:41 2023] RPC: Registered tcp NFSv4.1 backchannel transport module.</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true"></a><span class="co">// ----------------------------------------------------------------------------</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true"></a><span class="co">// REGULAR USER &#39;command prompts&#39;:</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true"></a></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true"></a><span class="co">// By regular user, we mean NOT the &#39;root&#39; superuser.</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true"></a><span class="co">// If the command shell is a bourne-style shell in a Linux or UNIX environment</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true"></a><span class="co">// then the prompt is represented by a &#39;dollar&#39; character as the first character</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true"></a><span class="co">// followed by a mandatory space character.</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true"></a><span class="co">// It should be a green colour in bold font.</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true"></a></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true"></a><span class="kw">$ </span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true"></a><span class="kw">$ whoami</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true"></a>myloginname</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true"></a></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true"></a><span class="co">// Similarly if the command shell is the C shell then the prompt is</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true"></a><span class="co">// represented by a &#39;percent&#39; character as the first character followed by</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true"></a><span class="co">// a mandatory space character.</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true"></a></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true"></a><span class="kw">% </span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true"></a><span class="kw">% echo $shell</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true"></a>/bin/tcsh</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true"></a></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true"></a></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true"></a><span class="co">// ----------------------------------------------------------------------------</span></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true"></a><span class="co">// THE &#39;root&#39; USER &#39;command prompt&#39;:</span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true"></a><span class="co">// </span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true"></a><span class="co">// For the root user we assume a bourne shell and we represent the command</span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true"></a><span class="co">// prompt by a &#39;pound&#39; character (also known as the number sign or hash sign)</span></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true"></a><span class="co">// as the first character followed by a manditory space character.</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true"></a><span class="co">// It should be a red colour in bold font.</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true"></a></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true"></a><span class="co">// We transition from being a regular user to the superuser with sudo here:</span></span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true"></a><span class="kw">$ sudo /bin/sh</span></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true"></a>[sudo] password for myloginname:</span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true"></a><span class="fu"># whoami</span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true"></a>root</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true"></a></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true"></a></span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true"></a><span class="co">// ----------------------------------------------------------------------------</span></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true"></a><span class="co">// COMMAND LINE AND LINE CONTINUATION:</span></span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true"></a></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true"></a><span class="co">// No matter which of the command prompts is in use, all will keep their</span></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true"></a><span class="co">// prompt display properties when a command spreads over more than one</span></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true"></a><span class="co">// line, provided that the &#39;backslash&#39; character appears as the very last </span></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true"></a><span class="co">// character of any command line fragment.  It is known as the line continuation</span></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true"></a><span class="co">// character.</span></span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true"></a><span class="co">// Here are some examples.  For bourne shells a greater-than character &#39;&gt;&#39;</span></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true"></a><span class="co">// sub-prompt appears, waiting for command completion.  For C shells </span></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true"></a><span class="co">// a question mark &#39;?&#39; sub-prompt appears:</span></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true"></a></span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true"></a><span class="kw">$ grep  Firewall: /var/log/messages | \</span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true"></a><span class="kw">&gt; awk &#39;{print $11}&#39; | sort -u | \</span></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true"></a><span class="kw">&gt; sed &#39;s/SRC=//&#39; | head</span></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true"></a>104.100.67.156</span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true"></a>104.103.120.57</span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true"></a>104.103.125.29</span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true"></a>104.103.126.18</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true"></a>104.103.126.229</span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true"></a>104.103.189.128</span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true"></a>104.103.211.131</span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true"></a>104.193.88.77</span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true"></a>104.254.148.251</span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true"></a>104.254.148.252</span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true"></a></span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true"></a><span class="fu"># for i in boot etc root ; do \</span></span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true"></a><span class="fu">&gt; echo tar -zcf $i.tgz /$i; \</span></span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true"></a><span class="fu">&gt; done</span></span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true"></a>tar -zcf boot.tgz /boot</span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true"></a>tar -zcf etc.tgz /etc</span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true"></a>tar -zcf root.tgz /root</span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true"></a></span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true"></a><span class="kw">% ps -ef | grep -i xfs | \</span></span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true"></a><span class="kw">? wc -l</span></span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true"></a>59</span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true"></a></span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true"></a></span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true"></a><span class="co">// ----------------------------------------------------------------------------</span></span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true"></a><span class="co">// OTHER SHELL-LIKE COMMANDS:</span></span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true"></a><span class="co">// </span></span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true"></a><span class="co">// So far, 3 other commands which provide an interactive shell-like interface</span></span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true"></a><span class="co">// are syntax-highlighted as well.</span></span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true"></a><span class="co">// They should all be a purple colour in bold font.</span></span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true"></a><span class="co">// I could add more commands in the future.</span></span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true"></a></span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true"></a></span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true"></a><span class="co">// ----------------------------------------------------------------------------</span></span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true"></a><span class="co">// &#39;virsh&#39; is the &#39;Virtual Shell&#39; command line interface for managing</span></span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true"></a><span class="co">//  virtual machines.</span></span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true"></a><span class="co">// It requires the following text starting in the first position on a line,</span></span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true"></a><span class="co">// followed by a manditory space:  &#39;virsh # &#39;</span></span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true"></a></span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true"></a><span class="dt">virsh # </span></span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true"></a></span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true"></a><span class="co">// Examples:</span></span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true"></a></span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true"></a><span class="dt">virsh # help connect</span></span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true"></a>  NAME</span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true"></a>    connect - (re)connect to hypervisor</span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true"></a>...</span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true"></a></span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true"></a><span class="dt">virsh # list      </span></span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true"></a> Id    Name                           State</span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true"></a>----------------------------------------------------</span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true"></a> 1     ubuntu                         running</span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true"></a></span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true"></a><span class="dt">virsh # quit</span></span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true"></a></span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true"></a></span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true"></a><span class="co">// ----------------------------------------------------------------------------</span></span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true"></a><span class="co">// &#39;mysql&#39; is the interactive console interface for managing a MySQL</span></span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true"></a><span class="co">// database.</span></span>
+<span id="cb6-140"><a href="#cb6-140" aria-hidden="true"></a><span class="co">// It requires the following text starting in the first position on a line,</span></span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true"></a><span class="co">// followed by a manditory space.  A semicolon is required to end the command</span></span>
+<span id="cb6-142"><a href="#cb6-142" aria-hidden="true"></a><span class="co">// text:</span></span>
+<span id="cb6-143"><a href="#cb6-143" aria-hidden="true"></a></span>
+<span id="cb6-144"><a href="#cb6-144" aria-hidden="true"></a><span class="dt">mysql&gt; </span></span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true"></a><span class="dt"> ;</span></span>
+<span id="cb6-146"><a href="#cb6-146" aria-hidden="true"></a></span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true"></a><span class="co">// Using a semi-colon to end a command is normal for traditional mysql</span></span>
+<span id="cb6-148"><a href="#cb6-148" aria-hidden="true"></a><span class="co">// commands.  A few mysql commands like &#39;USE&#39;, &#39;QUIT&#39; and &#39;EXIT&#39; do not</span></span>
+<span id="cb6-149"><a href="#cb6-149" aria-hidden="true"></a><span class="co">// require a semi-colon to terminate the command, but for the sake of syntax</span></span>
+<span id="cb6-150"><a href="#cb6-150" aria-hidden="true"></a><span class="co">// highlighting here you must use a semi-colon.</span></span>
+<span id="cb6-151"><a href="#cb6-151" aria-hidden="true"></a></span>
+<span id="cb6-152"><a href="#cb6-152" aria-hidden="true"></a><span class="dt">mysql&gt; show variables like &#39;%engine%&#39;;</span></span>
+<span id="cb6-153"><a href="#cb6-153" aria-hidden="true"></a>+----------------------------+--------+</span>
+<span id="cb6-154"><a href="#cb6-154" aria-hidden="true"></a>| Variable_name              | Value  |</span>
+<span id="cb6-155"><a href="#cb6-155" aria-hidden="true"></a>+----------------------------+--------+</span>
+<span id="cb6-156"><a href="#cb6-156" aria-hidden="true"></a>| default_storage_engine     | InnoDB |</span>
+<span id="cb6-157"><a href="#cb6-157" aria-hidden="true"></a>...</span>
+<span id="cb6-158"><a href="#cb6-158" aria-hidden="true"></a></span>
+<span id="cb6-159"><a href="#cb6-159" aria-hidden="true"></a><span class="dt">mysql&gt;  grant all privileges on webdb.* to &#39;rw&#39;@&#39;192.168.1.%&#39;</span></span>
+<span id="cb6-160"><a href="#cb6-160" aria-hidden="true"></a><span class="dt">    -&gt; identified by &#39;some_password_here&#39;;</span></span>
+<span id="cb6-161"><a href="#cb6-161" aria-hidden="true"></a></span>
+<span id="cb6-162"><a href="#cb6-162" aria-hidden="true"></a><span class="dt">mysql&gt; quit;</span></span>
+<span id="cb6-163"><a href="#cb6-163" aria-hidden="true"></a>Bye</span>
+<span id="cb6-164"><a href="#cb6-164" aria-hidden="true"></a></span>
+<span id="cb6-165"><a href="#cb6-165" aria-hidden="true"></a><span class="kw">$ mysql -u rw -h 192.168.1.63 -p webdb</span></span>
+<span id="cb6-166"><a href="#cb6-166" aria-hidden="true"></a>...</span>
+<span id="cb6-167"><a href="#cb6-167" aria-hidden="true"></a>Type &#39;help;&#39; or &#39;\h&#39; for help...</span>
+<span id="cb6-168"><a href="#cb6-168" aria-hidden="true"></a></span>
+<span id="cb6-169"><a href="#cb6-169" aria-hidden="true"></a><span class="dt">mysql&gt; insert into members (email) values (&#39;Y&#39;)</span></span>
+<span id="cb6-170"><a href="#cb6-170" aria-hidden="true"></a><span class="dt">;</span></span>
+<span id="cb6-171"><a href="#cb6-171" aria-hidden="true"></a>Query OK, 1 row affected (0.00 sec)</span>
+<span id="cb6-172"><a href="#cb6-172" aria-hidden="true"></a></span>
+<span id="cb6-173"><a href="#cb6-173" aria-hidden="true"></a><span class="dt">mysql&gt; quit;</span></span>
+<span id="cb6-174"><a href="#cb6-174" aria-hidden="true"></a>Bye</span>
+<span id="cb6-175"><a href="#cb6-175" aria-hidden="true"></a></span>
+<span id="cb6-176"><a href="#cb6-176" aria-hidden="true"></a></span>
+<span id="cb6-177"><a href="#cb6-177" aria-hidden="true"></a><span class="co">// ----------------------------------------------------------------------------</span></span>
+<span id="cb6-178"><a href="#cb6-178" aria-hidden="true"></a><span class="co">// &#39;mariadb&#39; is the interactive console interface for managing a MariaDB</span></span>
+<span id="cb6-179"><a href="#cb6-179" aria-hidden="true"></a><span class="co">// database.  The only difference for syntax highlighting purposes between</span></span>
+<span id="cb6-180"><a href="#cb6-180" aria-hidden="true"></a><span class="co">// mariadb and mysql is the prompt; otherwise the console behaviour is the same.</span></span>
+<span id="cb6-181"><a href="#cb6-181" aria-hidden="true"></a></span>
+<span id="cb6-182"><a href="#cb6-182" aria-hidden="true"></a><span class="kw">$ mariadb -u root -p</span></span>
+<span id="cb6-183"><a href="#cb6-183" aria-hidden="true"></a>Enter password:</span>
+<span id="cb6-184"><a href="#cb6-184" aria-hidden="true"></a>...</span>
+<span id="cb6-185"><a href="#cb6-185" aria-hidden="true"></a><span class="dt">MariaDB&gt; use mysql;</span></span>
+<span id="cb6-186"><a href="#cb6-186" aria-hidden="true"></a>Database changed</span>
+<span id="cb6-187"><a href="#cb6-187" aria-hidden="true"></a></span>
+<span id="cb6-188"><a href="#cb6-188" aria-hidden="true"></a><span class="dt">MariaDB&gt; show tables like &#39;time%&#39;;</span></span>
+<span id="cb6-189"><a href="#cb6-189" aria-hidden="true"></a>+---------------------------+</span>
+<span id="cb6-190"><a href="#cb6-190" aria-hidden="true"></a>| Tables_in_mysql (time%)   |</span>
+<span id="cb6-191"><a href="#cb6-191" aria-hidden="true"></a>+---------------------------+</span>
+<span id="cb6-192"><a href="#cb6-192" aria-hidden="true"></a>| time_zone                 |</span>
+<span id="cb6-193"><a href="#cb6-193" aria-hidden="true"></a>| time_zone_leap_second     |</span>
+<span id="cb6-194"><a href="#cb6-194" aria-hidden="true"></a>| time_zone_name            |</span>
+<span id="cb6-195"><a href="#cb6-195" aria-hidden="true"></a>| time_zone_transition      |</span>
+<span id="cb6-196"><a href="#cb6-196" aria-hidden="true"></a>| time_zone_transition_type |</span>
+<span id="cb6-197"><a href="#cb6-197" aria-hidden="true"></a>+---------------------------+</span>
+<span id="cb6-198"><a href="#cb6-198" aria-hidden="true"></a>5 rows in set (0.00 sec)</span>
+<span id="cb6-199"><a href="#cb6-199" aria-hidden="true"></a></span>
+<span id="cb6-200"><a href="#cb6-200" aria-hidden="true"></a><span class="dt">MariaDB&gt; exit;</span></span>
+<span id="cb6-201"><a href="#cb6-201" aria-hidden="true"></a>Bye</span>
+<span id="cb6-202"><a href="#cb6-202" aria-hidden="true"></a></span>
+<span id="cb6-203"><a href="#cb6-203" aria-hidden="true"></a><span class="co">// ----------------------------------------------------------------------------</span></span></code></pre></div>
+</body>
+</html>
