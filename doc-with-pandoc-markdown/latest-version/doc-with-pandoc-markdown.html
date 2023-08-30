@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Denice Deatrich" />
+  <title>Getting Started With Pandoc Markdown</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {  background-color: #f5f5dc; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #0000ff; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #8f008f; font-weight: bold; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #ff0000; font-weight: bold; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://latex.now.sh/style.css" />
+  <link rel="stylesheet" href="https://deatrich.github.io/style.css" />
+  
+  
+  
+  
+  
+  
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Getting Started With Pandoc Markdown</h1>
+<p class="author">Denice Deatrich
+  <br />Created: July 2023
+  <br />Last update: 30 August 2023
+</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of Contents</h2>
+<ul>
+<li><a href="#overview">Overview</a>
+<ul>
+<li><a href="#about-this-document">About this Document</a></li>
+<li><a href="#guide-outline">Guide outline</a></li>
+</ul></li>
+<li><a href="#creating-a-pandoc-workspace">Creating a Pandoc workspace</a>
+<ul>
+<li><a href="#installing-the-packages">Installing the packages</a>
+<ul>
+<li><a href="#pandoc">Pandoc</a></li>
+<li><a href="#editors">Editors</a></li>
+<li><a href="#pdf-viewers">PDF viewers</a></li>
+<li><a href="#spell-checking-software">Spell checking software</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#installing-the-project-files">Installing the project files</a>
+<ul>
+<li><a href="#getting-the-files">Getting the files</a></li>
+<li><a href="#generating-your-document-working-area">Generating your document working area</a></li>
+<li><a href="#files-provided-with-this-project">Files provided with this project</a>
+<ul>
+<li><a href="#shell-scripts">Shell scripts</a></li>
+<li><a href="#build-tools">Build tools</a></li>
+<li><a href="#markdown-files">Markdown files</a></li>
+<li><a href="#files-which-affect-document-content-and-presentation">Files which affect document content and presentation</a></li>
+<li><a href="#files-which-control-style">Files which control style</a></li>
+<li><a href="#files-which-control-syntax-highlighting">Files which control syntax highlighting</a></li>
+<li><a href="#editor-files-for-vimgvim">Editor files for <em>vim</em>/<em>gvim</em></a></li>
+</ul></li>
+</ul></li>
+<li><a href="#examples-of-pandocs-markdown-usage">Examples of Pandoc’s Markdown usage</a>
+<ul>
+<li><a href="#leaf-block-elements">Leaf Block Elements</a>
+<ul>
+<li><a href="#paragraph-structures-and-headings">Paragraph structures and Headings</a></li>
+<li><a href="#fenced-code-blocks">Fenced code blocks</a></li>
+<li><a href="#horizontal-rule">Horizontal rule</a></li>
+</ul></li>
+<li><a href="#container-block-elements">Container Block Elements</a>
+<ul>
+<li><a href="#block-quotations">Block quotations</a></li>
+<li><a href="#lists">Lists</a></li>
+<li><a href="#tables">Tables</a></li>
+<li><a href="#footnotes-and-inline-notes">Footnotes and ‘inline’ notes</a></li>
+</ul></li>
+<li><a href="#inline-elements">Inline elements</a>
+<ul>
+<li><a href="#formatting-elements">Formatting elements</a></li>
+<li><a href="#links">Links</a></li>
+<li><a href="#images">Images</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+<!-- Pandoc metadata, mostly used when generating PDF
+
+     Solution for starting a new page for major sections of PDF output
+     in metadata (documentclass, header-includes) is decscribed at:
+     https://superuser.com/a/1436367
+
+     Think of removing this html comment, since it is included verbatim
+     in generated HTML-based documents.
+
+     Be sure to change 'title', 'author' and 'date' below.
+-->
+<!-- -->
+<h1 id="overview">Overview</h1>
+<p>Documenting with the <a href="https://www.markdownguide.org/getting-started/">Markdown language</a> is wonderfully simple and clean. When combined with the capabilities of the <a href="https://pandoc.org/">Pandoc</a> command set then many options exist for generating elegant documents from a Markdown document.</p>
+<p>Though <a href="https://pandoc.org/MANUAL.html#options">many output formats</a> are possible with Pandoc, the tools provided with this guide generate <em>html</em>, <em>pdf</em> and <em>docx</em> output.</p>
+<p>There are some issues with ‘docx’ documents (!! I need to check some of these points with MS Word once I borrow a laptop from the family):</p>
+<ul>
+<li><p>A <em>table of contents</em> is not generated for Libreoffice/Openoffice. You must open the document in your word processor and ask it to generate a table of contents.</p></li>
+<li><p>If you wish to modify the default document style then you can either modify the style of the reference docx file using your word processor, or you can unpack the reference document, modify the <em>styles.xml</em> file, and the repack the document. I describe <a href="#i-docxref">how to unpack the reference file</a> further in this document.</p></li>
+<li><p>Images are not elegantly scaled in the docx presentation. Therefore you need to adjust images to fit the required placement.</p></li>
+<li><p>You will need to enable a footer in the page style and add the page number for page numbering.</p></li>
+</ul>
+<p>These tools focus on writing computer technical documentation; however they can easily be adapted for other purposes, like writing presentation slides, or scientific latex documents. By modifying style and template parameters you can adapt the tools to your needs.</p>
+<p>The platform used for this project is Ubuntu LTS 22.04 on a Raspberry Pi, as documented at:<br />
+<a href="https://deatrich.github.io/linux-home-server/latest-version/linux-server.html#doc">https://github.com/deatrich/linux-home-server</a></p>
+<p>The version of Pandoc used is 2.9. Any other Linux distribution or UNIX-based system with a recent installation of <em>Pandoc</em> should work as well.</p>
+<p>If you discover issues with instructions in this document, or have other comments or suggestions then you can contact me via my email address shown on <a href="https://github.com/deatrich/">my github project repository page</a>, or you can file specific issues under the ‘Issues’ tab <a href="https://github.com/deatrich/doc-with-pandoc-markdown">on the project page</a>.</p>
+<h2 id="about-this-document">About this Document</h2>
+<p>In this guide command-line sessions appear in a pale-yellow box, using a customized <em>.console</em> syntax highlighting convention described in my <a href="https://deatrich.github.io/console-syntax/"><em>console syntax highlighting</em> project</a>.</p>
+<p>Simplified command-line prompts have syntax highlighting. As well, explanatory comments starting with two slashes are italicized and are coloured blue:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">// Usually your prompt would be more complex, something like this:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">//    myname@ubuntu:~/.vim/syntax$</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="co">// or like this:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="co">//    [desktop /tmp]$ </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="co">// But I simplify its appearance when illustrating command-line sessions.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co">// Normal Users&#39; command-line prompt, coloured &#39;green&#39;:</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">$ some-command</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="co">// The root superuser&#39;s prompt, simplifed also, and coloured &#39;red&#39;:</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="fu"># some-other-command</span></span></code></pre></div>
+<p>A few other command-line programs with a shell-like interface – <em>mysql</em>, <em>mariadb</em> and <em>virsh</em> – also have syntax highlighting:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">// mariadb session:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">$ mysql -u root -p</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>Enter password: </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>Welcome to the MariaDB monitor.  Commands end with ; or \g.</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>...</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="dt">MariaDB&gt; select concat(user, &#39;@&#39;, host) from mysql.global_priv;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>+-------------------------+</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>| concat(user, &#39;@&#39;, host) |</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>+-------------------------+</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>| ro@192.168.1.%          |</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>| rw@192.168.1.%          |</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>| mariadb.sys@localhost   |</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>| mysql@localhost         |</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>| root@localhost          |</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>+-------------------------+</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>5 rows in set (0.001 sec)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="dt">MariaDB&gt; exit;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>Bye</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a><span class="co">// virsh session:</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a><span class="kw">$ sudo virsh</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>Welcome to virsh, the virtualization interactive terminal.</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a>Type:  &#39;help&#39; for help with commands</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>       &#39;quit&#39; to quit</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a><span class="dt">virsh # list --all</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a> Id   Name          State</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a>------------------------------</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a> -    rocky8        shut off</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a> -    rocky8.2      shut off</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a> -    ubuntu22.04   shut off</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a><span class="dt">virsh # exit</span></span></code></pre></div>
+<p>Sometimes command output is long and/or uninteresting in the context of this guide. I might show such segments with a ellipsis (<strong>…</strong>)</p>
+<p>Sometimes a double-exclamation (<strong>!!</strong>) mark might appear somewhere – this is only a reminder for myself to fix an issue at that point in the documentation. These reminders will eventually disappear.</p>
+<p>You can of course use syntax highlighting for various languages in Pandoc’s Markdown. Here is an example of a bash script:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">#!/bin/bash -e</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="bu">unalias</span> -a</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="va">PATH=</span>/usr/bin:/bin</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">## get the timestamp from the file argument and apply it</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="fu">update_file_timestamp()</span> <span class="kw">{</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>  <span class="va">file_time=$(</span><span class="fu">git</span> log -1 --pretty=format:%ai <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span><span class="va">)</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>  <span class="fu">touch</span> -d <span class="st">&quot;</span><span class="va">$file_time</span><span class="st">&quot;</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="kw">}</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="va">OLD_IFS=$IFS</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="va">IFS=</span><span class="st">$&#39;</span><span class="dt">\n</span><span class="st">&#39;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="kw">for</span> <span class="fu">file</span> in <span class="kw">`</span><span class="fu">git</span> ls-files<span class="kw">`</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="kw">do</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>  <span class="kw">if</span><span class="bu"> [</span> <span class="ot">-f</span> <span class="st">&quot;</span><span class="va">$file</span><span class="st">&quot;</span><span class="bu"> ]</span> ; <span class="kw">then</span>  ## <span class="ex">check</span> for file existence</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>    <span class="ex">update_file_timestamp</span> <span class="st">&quot;</span><span class="va">$file</span><span class="st">&quot;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a>  <span class="kw">fi</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a><span class="kw">done</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a><span class="va">IFS=$OLD_IFS</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a><span class="fu">git</span> update-index --refresh</span></code></pre></div>
+<h2 id="guide-outline">Guide outline</h2>
+<p>In this guide I cover the following topics. It should be enough to get you started writing documentation in Markdown.</p>
+<p>We start by setting up your workspace. We install Pandoc, as well as my favourite editor (or your favourite editor) and a few PDF viewers. Other viewers like Firefox and LibreOffice are typically already installed.</p>
+<p>Though spell checking is primitive, we take a look at <em>aspell</em>, and I show how to install the needed Lua filters and how to use them.</p>
+<p>Then we pull the files from this project and from the ‘console syntax’ project on <em>github.com</em> and install them into your home directory. We also test the installation by running ‘make’ on the initial generated project.</p>
+<p>I give a quick overview of the purpose of the provided tools and files.</p>
+<p>The final section of this guide is an outline of Markdown elements so that you have a quick start on common Markdown elements.</p>
+<!-- -->
+<h1 id="creating-a-pandoc-workspace">Creating a Pandoc workspace</h1>
+<p>An installation of Pandoc along with the requisite latex support files is needed. In this document I install Pandoc on Ubuntu LTS 22.04. Other Linux distributions will have differing package name and differing package dependencies.</p>
+<h2 id="installing-the-packages">Installing the packages</h2>
+<h3 id="pandoc">Pandoc</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">// Let&#39;s see what would be installed, without actually installing it:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">$ sudo apt install pandoc</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>The following additional packages will be installed:</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>  libcmark-gfm-extensions0.29.0.gfm.3 libcmark-gfm0.29.0.gfm.3 pandoc-data</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>Suggested packages:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>  texlive-latex-recommended texlive-xetex texlive-luatex pandoc-citeproc</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>  texlive-latex-extra context wkhtmltopdf librsvg2-bin groff ghc nodejs</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>  php python ruby r-base-core libjs-katex citation-style-language-styles</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a> ...</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>Do you want to continue? [Y/n] n</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>Abort.</span></code></pre></div>
+<p>I have installed pandoc a few times now, and I know how important some of the suggested packages are. Since we will be generating PDF formats then TeX and its various flavours and support files will also be needed.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co">// So I install the suggested packages ... over 100 packages will be pulled in:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">$ sudo apt install texlive-latex-recommended texlive-xetex texlive-luatex \</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="kw"> pandoc-citeproc texlive-latex-extra context texlive-fonts-recommended wkhtmltopdf</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>...</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>The following NEW packages will be installed:</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>  context context-modules dvisvgm feynmf fonts-gfs-artemisia</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>  fonts-gfs-baskerville fonts-gfs-bodoni-classic fonts-gfs-didot</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a>  fonts-gfs-didot-classic fonts-gfs-gazis fonts-gfs-neohellenic fonts-gfs-olga</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>  ...</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>  tex-gyre texlive-base texlive-binaries texlive-extra-utils</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>  texlive-font-utils texlive-fonts-recommended texlive-latex-base</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>  texlive-latex-extra texlive-latex-recommended texlive-luatex</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a>  texlive-metapost texlive-pictures texlive-plain-generic texlive-xetex tipa</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a>  tk tk8.6 wkhtmltopdf</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a> ...</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a>Running updmap-sys. This may take some time... done.</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a>Running mktexlsr /var/lib/texmf ... done.</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a>Building format(s) --all.</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a>        This may take some time... done.</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a>Running mktexlsr /var/lib/texmf ... done.</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a>Building format(s) --all.</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a>        This may take some time... done.</span></code></pre></div>
+<p>Now we install pandoc, which pulls in ‘pandoc-data’</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">$ sudo apt install pandoc</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a> ...</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>The following additional packages will be installed:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>  pandoc-data</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a> ...</span></code></pre></div>
+<h3 id="editors">Editors</h3>
+<p>My editor of choice is <em>gvim</em> – that is – <em>graphical vim</em>. You will need to use a decent editor. It would be painful I think to write Markdown documentation with a minimalist text editor (like <a href="https://help.ubuntu.com/community/Nano"><em>nano</em></a> or <a href="https://manpages.ubuntu.com/manpages/impish/man1/le.1.html"><em>le</em></a>).</p>
+<p>Perhaps you already have a favourite editor on the Linux platform. Some other text editors in my version of Ubuntu LTS are:</p>
+<ul>
+<li>pluma (<code class="sourceCode console"><span class="kw">$ sudo apt install pluma</span></code>)</li>
+<li>gedit (if not installed then: <code class="sourceCode console"><span class="kw">$ sudo apt install gedit</span></code>)</li>
+<li>kate (<code class="sourceCode console"><span class="kw">$ sudo apt install kate</span></code>)</li>
+<li>emacs (<code class="sourceCode console"><span class="kw">$ sudo apt install emacs-gtk</span></code>)</li>
+</ul>
+<p>I provide help syntax highlighting the <em>console input/output fenced code</em> with both ‘vim/gvim’ and ‘kate’. If you are not documenting console input/output then it will not matter which editor you use. There are after all more than 130 computer ‘languages’ which Pandoc’s Markdown is able to highlight.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="co">// To install graphical vim:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">$ sudo apt install vim-gtk3</span></span></code></pre></div>
+<h3 id="pdf-viewers">PDF viewers</h3>
+<p>I like the <em>evince</em> PDF viewer on my Ubuntu desktop. The ‘table of contents’ outline shows up in the left pane on ‘evince’, and you can toggle it on/off by clicking the ‘Side pane’ icon in the upper left.</p>
+<p>Another PDF viewer is <em>qpdfview</em>. In order to see the ‘outline’, select:</p>
+<p>View -&gt; Docks -&gt; Outline</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="co">// Install the PDF viewers:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="kw">$ apt install evince qpdfview</span></span></code></pre></div>
+<p>An excellent, but non-free PDF viewer is <a href="https://code-industry.net/masterpdfeditor/">Master PDF Editor</a>.</p>
+<blockquote>
+<p><em>The unregistered version can be used only in personal, noncommercial purposes to view documents, fill PDF forms, comment and print documents. In order to use the application for commercial purposes, and with its full functionality you are required to purchase a license.</em></p>
+</blockquote>
+<p>For Ubuntu, Debian and OpenSuse / Red Hat / CentOS you can <a href="https://code-industry.net/free-pdf-editor/#get">download a free version</a>. If you are interested in using it for more complex reasons like form-filling, PDF document editing and digital signing, then buy a license.</p>
+<p>For x86/x86_64 architectures there are software packages available. However the version of Master PDF Editor for the <em>arm64</em> architecture must be installed from the supplied <a href="https://en.wikipedia.org/wiki/Tar_(computing)">tarball</a>:</p>
+<p>Here is an example of installing it on Ubuntu LTS on a Raspberry Pi:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">$ mkdir ~/temp/</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="kw">$ cd ~/temp/</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="kw">$ tar zxf /path/to/master-pdf-editor-5.9.50-qt5.arm64.tar.gz</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="kw">$ ls -CpF</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a>master-pdf-editor-5/</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a><span class="kw">$ mkdir -p ~/bin/mpdf</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="kw">$ cp -a master-pdf-editor-5/ ~/bin/mpdf/</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a><span class="co">// Remove the temporary installation directory</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a><span class="kw">$ rm -rf ~/temp</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a><span class="co">// A few extra libraries are needed to run this program:</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true"></a><span class="kw">$ sudo apt install libqt5xml5 libqt5concurrent5 </span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true"></a><span class="kw">$ cd ~/bin/mpdf/</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true"></a><span class="kw">$ ls -CpF</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true"></a>fonts/  license_en.txt     masterpdfeditor5.desktop  stamps/</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true"></a>lang/   masterpdfeditor5*  masterpdfeditor5.png      templates</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true"></a><span class="kw">$ file masterpdfeditor5</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true"></a>masterpdfeditor5: ELF 64-bit LSB executable, ARM aarch64,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true"></a>version 1 (GNU/Linux), dynamically linked, interpreter</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true"></a>/lib/ld-linux-aarch64.so.1, for GNU/Linux 3.7.0,</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true"></a>BuildID[sha1]=94ca9680e3f0ae39e622aa4e2ab9cbc9c189e63e, stripped</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true"></a><span class="kw">$ cd</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true"></a><span class="kw">$ ~/bin/mpdf/masterpdfeditor5 -h</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true"></a>Master PDF Editor 5</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true"></a>Build 5.9.50, arm 64 bit</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true"></a> ...</span></code></pre></div>
+<h3 id="spell-checking-software">Spell checking software</h3>
+<p>The larger the document, the more likely it is that you will appreciate some form of spell checking.</p>
+<h4 id="spell-checking-in-editors">Spell checking in editors</h4>
+<p>A good editor will offer spell checking as an option; it is typically found in a <em>Tools</em> menu of your favourite editor. If you decide that your editor’s spell checking is useful then proceed with it. Embedded spell checking is available on gvim, pluma, emacs, kate and gedit. It is even better to have spell checking which is <em>markdown-aware</em>; by that I mean it does not try to spell check inside Markdown syntax and elements. You will need to experiment with your editor’s spell checking.</p>
+<h4 id="spell-checking-with-native-programs">Spell checking with native programs</h4>
+<p>Two widely used open source spell checkers are <a href="https://en.wikipedia.org/wiki/GNU_Aspell"><em>aspell</em></a> and <a href="https://en.wikipedia.org/wiki/Hunspell"><em>hunspell</em></a>. Both programs have dictionaries in dozens of languages:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">$ apt list | egrep &#39;^aspell-&#39; | wc -l</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>69</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="kw">$ apt list | egrep &#39;^hunspell-&#39; | grep -v tools | wc -l</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a>75</span></code></pre></div>
+<p>For markdown-based documentation ‘aspell’ has a markdown-aware option. I gave it a try and at least for me I found it somewhat useful. Here I invoke ‘aspell’ using the <em>Markdown</em> mode on a file named <em>overview.md</em>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">$  aspell check --dont-backup --mode=markdown overview.md</span></span></code></pre></div>
+<p>Its spell checking is fairly easy to navigate – the image below shows a terminal session with ‘aspell’:</p>
+<figure>
+<img src="aspell.png" id="id" class="class" style="width:60.0%" alt="" /><figcaption><em>aspell</em> in Markdown mode in a terminal window</figcaption>
+</figure>
+<h4 id="spell-checking-with-the-lua-filter">Spell checking with the Lua filter</h4>
+<p>Another option is to use the <a href="https://www.lua.org/about.html">Lua</a> filtering capability of Pandoc. It is primitive, but it has a few useful options:</p>
+<ul>
+<li>you can quickly generate a list of technical words that you can ask <em>aspell</em> to ignore</li>
+<li>by eliminating technical words you can quickly find the odd spelling mistake even though it is simply a list of possibly misspelled words.</li>
+</ul>
+<p>Software packages for these filters do not exist (or at least I did not find them), so you would need to pull them from github:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="co">// get the files</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="kw">$ mkdir ~/git</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="kw">$ cd ~/git</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="kw">$ git clone --depth=1 &#39;https://github.com/pandoc/lua-filters&#39;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="kw">$ cd lua-filters</span></span></code></pre></div>
+<p>You can install only the spell checking file, or you can install all of the filters:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="co">// The filters need to be installed in your pandoc configuration directory:</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a><span class="kw">$ mkdir -p ~/.pandoc/filters</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a><span class="co">// copy only the spelling filter to your work area</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a><span class="kw">$ cp -up spellcheck/spellcheck.lua  ~/pandoc/filters/</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a><span class="co">// or copy all the filters to your work area using &#39;find&#39; and looping over them:</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a><span class="kw">$ find . -type f -a  -name \*.lua | \</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true"></a><span class="kw">  while read f ; do \</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true"></a><span class="kw">    echo $f; \</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true"></a><span class="kw">    cp -up $f ~/.pandoc/filters/; \</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true"></a><span class="kw">  done</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true"></a><span class="kw">$ ls -l ~/.pandoc/filters/*spell*</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true"></a>/home/myname/.pandoc/filters/spellcheck.lua</span></code></pre></div>
+<p>Invoke the filter and get a list of possibly misspelled words. You can add them to <a href="http://aspell.net/man-html/Format-of-the-Personal-and-Replacement-Dictionaries.html">your personal dictionary</a>:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="co">// As an example, use the filter on &#39;overview.md&#39;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a><span class="kw">$ pandoc --lua-filter spellcheck.lua overview.md </span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a>docx</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a>wth</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a><span class="co">// So I add docx to my personal dictionary (and fix the spelling of &#39;with&#39;):</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true"></a><span class="kw">$ nano ~/.aspell.en.pws</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true"></a><span class="kw">$ head ~/.aspell.en.pws </span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true"></a>personal_ws-1.1 en 37</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true"></a>backticks</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true"></a>CentOS</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true"></a>css</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true"></a>dev</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true"></a>docx</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true"></a>fsck</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true"></a> ...</span></code></pre></div>
+<!-- -->
+<h1 id="installing-the-project-files">Installing the project files</h1>
+<h2 id="getting-the-files">Getting the files</h2>
+<p>The files provided with this project can be downloaded from these two relevant projects found on ‘github’:</p>
+<ul>
+<li><a href="https://github.com/deatrich/doc-with-pandoc-markdown">https://github.com/deatrich/doc-with-pandoc-markdown</a></li>
+<li><a href="https://github.com/deatrich/console-syntax">https://github.com/deatrich/console-syntax</a></li>
+</ul>
+<p>You can either use <em>git</em> to clone the projects, or pick up <em>zip</em> files of the projects.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="co">// Make a directory where you can temporarily put the files</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a><span class="kw">$ mkdir ~/temp</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="kw">$ cd ~/temp</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a><span class="co">// If you use git:</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a><span class="kw">$ git clone https://github.com/deatrich/doc-with-pandoc-markdown.git</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true"></a><span class="kw">$ git clone https://github.com/deatrich/console-syntax.git</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true"></a><span class="co">// If you use zip:</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true"></a><span class="co">// For the zip files, browse to the project web sites, click on &#39;Code&#39; and then</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true"></a><span class="co">//  click on &#39;Download ZIP&#39;</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true"></a><span class="co">// Then move each downloaded file named &#39;main.zip&#39; to your temporary directory</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true"></a><span class="co">//  and extract, or unzip, its contents.</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true"></a><span class="co">// You will have a directory named &#39;doc-with-pandoc-markdown&#39; and another</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true"></a><span class="co">// named &#39;console-syntax&#39;</span></span></code></pre></div>
+<h2 id="generating-your-document-working-area">Generating your document working area</h2>
+<p>The provided shell script named <em>generate-new-guide.sh</em> will generate a new document area where it copies all of the needed files described in this section, and it creates the top-level Markdown file.</p>
+<p>Once you have obtained the files as described above, then you can use this script to set up your work area:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="kw">$ cd ~/temp/doc-with-pandoc-markdown</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a><span class="kw">$ ./generate-new-guide.sh</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a>USAGE:  generate-new-guide.sh -d SOME_DIR -t FILE_NAME</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a>WHERE:  SOME_DIR     specifies a new, non-existent directory</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true"></a>WHERE:  FILE_NAME    specifies the name of the top document without &#39;.md&#39; ending</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true"></a>Example: ./generate-new-guide.sh -d ~/docs/how-to-guide -t How-to-guide</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true"></a><span class="kw">$ ./generate-new-guide.sh -d ~/docs/pet-project -t pet-project</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true"></a>&#39;../console-syntax/console.xml&#39; -&gt; &#39;./console.xml&#39;</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true"></a>&#39;../console-syntax/vim.ftdetect&#39; -&gt; &#39;./vim.ftdetect&#39;</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true"></a>&#39;../console-syntax/vim.syntax&#39; -&gt; &#39;./vim.syntax&#39;</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true"></a>&#39;../console-syntax/vimrc.example&#39; -&gt; &#39;./vimrc.example&#39;</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true"></a>Done.  Do not forget to modify &#39;metadata.md&#39; and possibly &#39;Makefile.project&#39;</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true"></a>Please visit /home/myname/docs/pet-project/</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true"></a><span class="co">// When you are done with the temporary files then delete them if you wish:</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true"></a><span class="kw">$ cd</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true"></a><span class="kw">$ rm -rf ~/temp</span></span></code></pre></div>
+<p>To test the setup, the generated work area contains an extra Markdown file (overview.md). Once you start writing your own markdown files then add them to the contents.txt file and remove overview.md from the list:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="kw">$ cd ~/docs/pet-project/</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a><span class="kw">$ ls</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a>console.xml             editorfiles/      metadata.md     style.css</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a>contents.txt            Makefile          overview.md     template.htm</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true"></a>custom-highlight.theme  Makefile.project  pet-project.md  template.latex</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true"></a>custom-reference.docx   md_templates/     scriptfiles/</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true"></a><span class="kw">$ cat contents.txt</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true"></a>metadata.md</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true"></a>overview.md</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true"></a><span class="co">// run the &#39;make&#39; command to generate your documents</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true"></a><span class="kw">$ make</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true"></a>pandoc -s metadata.md overview.md ... -V lastupdate=&quot;`date +&#39;%d %B %Y&#39;`&quot; -o pet-project.html</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true"></a>pandoc -s metadata.md overview.md --toc ... -o pet-project.docx</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true"></a>pandoc -s metadata.md overview.md --toc ... --pdf-engine=xelatex -o pet-project.pdf</span></code></pre></div>
+<h2 id="files-provided-with-this-project">Files provided with this project</h2>
+<p>Here is a list of the pertinent files provided with this project and their purpose.</p>
+<ul>
+<li><p>Shell scripts:</p>
+<ul>
+<li><a href="#i-script">generate-new-guide.sh</a></li>
+<li><a href="#i-tabscript">generate-table.sh</a></li>
+</ul></li>
+<li><p>Build tools:</p>
+<ul>
+<li><a href="#i-make">Makefile and Makefile.project</a></li>
+<li><a href="#i-filelist">contents.txt</a></li>
+</ul></li>
+<li><p>Markdown files:</p>
+<ul>
+<li><a href="#i-guide">guide-template.md</a></li>
+<li><a href="#i-chapter">chapter-template.md</a></li>
+<li><a href="#i-metadata">metadata.md</a></li>
+<li><a href="#i-metadata-docx">metadata-docx.md</a></li>
+</ul></li>
+<li><p>Pandoc templates affecting document content and presentation:</p>
+<ul>
+<li><a href="#i-temphtm">template.htm</a></li>
+<li><a href="#i-temptex">template.latex</a></li>
+<li><a href="#i-docxref">custom-reference.docx</a></li>
+</ul></li>
+<li><p>Style files:</p>
+<ul>
+<li><a href="#i-theme">custom-highlight.theme</a></li>
+<li><a href="#i-css">style.css</a></li>
+</ul></li>
+<li><p>Editor files and syntax definition for console syntax highlighting:</p>
+<ul>
+<li><a href="#i-xml">console.xml</a></li>
+<li><a href="#i-vimsyn">vim.syntax and vim.ftdetect</a></li>
+<li><a href="#i-vimrc">vimrc.example</a></li>
+</ul></li>
+</ul>
+<h3 id="shell-scripts">Shell scripts</h3>
+<h4 id="i-script"><em>generate-new-guide.sh</em></h4>
+<p>This is the shell script which generated a new document area for you.</p>
+<h4 id="i-tabscript"><em>generate-table.sh</em></h4>
+<p>If you find yourself creating tables in Markdown then sometimes it is useful to start with an empty table. The included script will print out an empty table, using the specified number of rows and columns; and the table width and the column height in characters. You should copy it into your PATH - normally this means you copy it into ~/bin/</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="kw">$ cp -p /path/to/generate-table.sh ~/bin/</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a><span class="kw">$ chmod 755 ~/bin/generate-table.sh</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a><span class="co">// We create a table 1 row by 3 columns, 60 chars wide. Row height is 3 chars</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true"></a><span class="kw">$ /generate-table.sh -r 1 -c 3  -w 60 -rh 3 -header yes</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true"></a>+--------------------+--------------------+--------------------+</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true"></a>|                    |                    |                    |</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true"></a>+====================+====================+====================+</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true"></a>|                    |                    |                    |</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true"></a>|                    |                    |                    |</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true"></a>|                    |                    |                    |</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true"></a>+--------------------+--------------------+--------------------+</span></code></pre></div>
+<p>If you are using the Gvim editor, then you can map a control-key sequence to insert a table into the document by altering your .vimrc file:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="kw">$ grep generate-table ~/.vimrc</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a>&quot; call generate-table.sh when Control+Z is pressed:</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a>map &lt;C-z&gt; &lt;esc&gt; !} generate-table.sh -r 4 -c 3  -w 70 -rh 3 -header yes&lt;C-m&gt;&lt;esc&gt;</span></code></pre></div>
+<h3 id="build-tools">Build tools</h3>
+<h4 id="i-make">Control document handling: <em>Makefile</em> and <em>Makefile.project</em></h4>
+<p>To avoid entering in repetitive and complex commands it is useful to have a <a href="https://en.wikipedia.org/wiki/Make_(software)">makefile</a> which runs the commands on your behalf.</p>
+<p>Take a careful look at these files. The generator script edits Makefile.project and sets the correct name for the project’s top file. Other variables that the makefile includes are the PDF, Office and the HTML viewers. Change them if you prefer other viewers.</p>
+<p>The rules in this file are mentioned if you ask for help:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="kw">$ make help</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a>make all          -- update all file types</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a>make test         -- modify then run a test target</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true"></a>make html         -- update the html file</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true"></a>make pdf          -- update the pdf file</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true"></a>make docx         -- update the docx file</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true"></a>make showhtml     -- show the html file</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true"></a>make showpdf      -- show the pdf file</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true"></a>make showdocx     -- show the docx file</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true"></a>make copies       -- push html and pdf copies to generated area</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true"></a>make publish      -- push html and pdf copies to publishing area</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true"></a>make clean        -- clean up generated files</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true"></a><span class="co">// because the very first rule is &#39;make all&#39; then when you type</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true"></a><span class="co">// &#39;make&#39; it will make all generated files, for example:</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true"></a><span class="kw">$ make</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true"></a>pandoc -s metadata.md ... -c style.css --toc ... -o my-guide.html</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true"></a>pandoc -s metadata.md ... --pdf-engine=xelatex -o my-guide.pdf</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true"></a>pandoc -s metadata.md ... --reference-doc=custom-reference.docx -o my-guide.docx</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true"></a></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true"></a><span class="co">// you can clean up the generated files at any time:</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true"></a><span class="kw">$ make clean</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true"></a>rm -i *.html *.pdf</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true"></a>rm: remove regular file &#39;my-guide.html&#39;? y</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true"></a>rm: remove regular file &#39;my-guide.pdf&#39;? y</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true"></a>rm: remove regular file &#39;my-guide.docx&#39;? y</span></code></pre></div>
+<h4 id="i-filelist">Ordered list of Markdown files: <em>contents.txt</em></h4>
+<p>When you start a documentation project it might end up quite large, with many chapters or sections in it. It is annoying to edit one big file. Instead it is more manageable if you create, for example, one file per chapter.</p>
+<p>The purpose of <em>contents.txt</em> is to simply list the chapters or sections by filename. They must be listed in the order you expect to find them in your final document. Note that <em>metadata.md</em> must be the first file.</p>
+<p>The ‘Makefile’ will get the list of Markdown files from this file, and pass the list to the pandoc program.</p>
+<h3 id="markdown-files">Markdown files</h3>
+<p>There are two Markdown files which you can copy to other filenames. They are found in the <em>md_templates</em> sub-directory.</p>
+<h4 id="i-guide">Template for the top-level document: <em>guide-template.md</em></h4>
+<p>This file’s sole purpose is the act as the place holder for your named top-level document. In the example above you specified that the document’s name would be <em>pet-project</em>. The script which set up your work area simply copied <em>guide-template.md</em> to <em>pet-project.md</em>. Do not bother editing this file, since it is just used by the Makefile as the target name when generating output files.</p>
+<h4 id="i-chapter">Template for a new chapter or section: <em>chapter-template.md</em></h4>
+<p>When creating new Markdown files which are part of your project you can copy <em>chapter-template.md</em> to your new file instead of starting from scratch. This file has skeleton Markdown lines in it.</p>
+<h4 id="i-metadata">Metadata needed by pandoc: <em>metadata.md</em></h4>
+<p>The ‘metadata’ file is used by pandoc to fill in some variables used when generating documents. Most but not all of the metadata are used when generating PDF output. Some variables like ‘lastupdate’ are auto-generated, so you do not need to change that value.</p>
+<p>A note at the top of the file reminds you to change the <em>title</em>, <em>author</em> and <em>date</em> (date is the initial creation date).</p>
+<h3 id="files-which-affect-document-content-and-presentation">Files which affect document content and presentation</h3>
+<p>Pandoc provides template files which control metadata placement and content ordering for most output formats. You can get the default template by asking pandoc for it on the command-line:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a><span class="co">// The latex template is used whenever PDF output is generated.</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a><span class="co">// There is no template for docx, but there is a reference data document.</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true"></a><span class="kw">$ pandoc -D latex &gt; template.latex.default</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true"></a><span class="kw">$ pandoc -D html &gt; template.html.default</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true"></a><span class="kw">$ pandoc --print-default-data-file reference.docx &gt; reference.docx</span></span></code></pre></div>
+<p>I made a few changes for HTML and for PDF to add a ‘Last update’ field and I removed the class for the ‘date’ value. As well, for PDF I modified the latex template to get the table of contents to appear in the bookmarks of a PDF viewer.</p>
+<h4 id="i-temphtm"><em>template.htm</em></h4>
+<div class="sourceCode" id="cb22"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="kw">$ cp -p template.html.default template.htm</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a><span class="kw">$ nano template.htm</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true"></a><span class="kw">$ diff template.html.default template.htm </span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true"></a>41,42c41</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true"></a>&lt; &lt;p class=&quot;author&quot;&gt;$author$&lt;/p&gt;</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true"></a>&lt; $endfor$</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true"></a>---</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true"></a>&gt; &lt;p class=&quot;author&quot;&gt;$author$</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true"></a>44c43,46</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true"></a>&lt; &lt;p class=&quot;date&quot;&gt;$date$&lt;/p&gt;</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true"></a>---</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true"></a>&gt;   &lt;br /&gt;Created: $date$</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true"></a>&gt; $endif$</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true"></a>&gt; $if(lastupdate)$</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true"></a>&gt;   &lt;br /&gt;Last update: $lastupdate$</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true"></a>45a48,49</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true"></a>&gt; &lt;/p&gt;</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true"></a>&gt; $endfor$</span></code></pre></div>
+<h4 id="i-temptex"><em>template.latex</em></h4>
+<div class="sourceCode" id="cb23"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a><span class="kw">$ cp -p template.latex.default template.latex</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true"></a><span class="kw">$ nano template.latex</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true"></a><span class="kw">$ diff template.latex.default template.latex</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true"></a>390c390,394</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true"></a>&lt; \date{$date$}</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true"></a>---</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true"></a>&gt; \date{Created: $date$</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true"></a>&gt; $if(lastupdate)$</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true"></a>&gt;   \normalsize{    Last update: \today}</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true"></a>&gt; $endif$}</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true"></a>&gt; </span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true"></a>432a437</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true"></a>&gt;   \pdfbookmark[0]{\contentsname}{toc}</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true"></a>440a446</span></code></pre></div>
+<h4 id="i-docxref"><em>custom-reference.docx</em></h4>
+<p>You can always generate your own reference.docx file using pandoc rather than using the file included with this project:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a><span class="kw">$ pandoc --print-default-data-file reference.docx &gt; custom-reference.docx</span></span></code></pre></div>
+<p>Then you can use your word processor and modify the document styles. Note that only modifications that impact the document style are used; any other kind of modification will be ignored by Pandoc.</p>
+<p>The provided ‘custom-reference.docx’ file was modified directly; here are the modifications made:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a><span class="co">// Start by unzipping the file so that you can access &#39;styles.xml&#39;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a><span class="kw">$ mkdir ~/styles</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true"></a><span class="kw">$ cd ~/styles</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true"></a><span class="kw">$ cp /path/to/custom-reference.docx .</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true"></a><span class="kw">$ unzip custom-reference.docx</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true"></a><span class="kw">$ rm custom-reference.docx</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true"></a><span class="kw">$ ls</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true"></a>&#39;[Content_Types].xml&#39;   docProps/   _rels/   word/</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true"></a><span class="kw">$ ls word/</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true"></a>comments.xml  fontTable.xml  numbering.xml  settings.xml  theme/</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true"></a>document.xml  footnotes.xml  _rels/         styles.xml    webSettings.xml</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true"></a></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true"></a><span class="co">// Edit the styles.xml file:</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true"></a><span class="kw">$ gvim word/styles.xml</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true"></a></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true"></a><span class="co">// In case you modified the reference docx file with your word processor</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true"></a><span class="co">// then you might need to first reformat the styles file so that you are able</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true"></a><span class="co">// to edit it:</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true"></a><span class="kw">$ xmllint --format styles.xml &gt; styles.xml.new</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true"></a><span class="kw">$ mv styles.xml.new styles.xml</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true"></a></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true"></a><span class="co">// When you are finished then you zip the file back up again.  Be sure to</span></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true"></a><span class="co">// create the zip file outside of the your work directory.  In this example</span></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true"></a><span class="co">// we used ~/styles/</span></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true"></a><span class="kw">$ pwd</span></span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true"></a>/home/myname/styles/</span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true"></a><span class="kw">$ zip -r ../custom-reference-new.docx *</span></span></code></pre></div>
+<p>Here are the XML changes made to the supplied ‘custom-reference.docx’ file:</p>
+<ol type="1">
+<li>Make fenced code blocks use a better font as well as a smaller font size:</li>
+</ol>
+<div class="sourceCode" id="cb26"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a>  <span class="co">&lt;!-- Locate the styleId &#39;VerbatimChar&#39; --&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true"></a>  <span class="co">&lt;!-- We change Consolas font to &#39;Courier New&#39; and set the size to 18 --&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true"></a>  <span class="kw">&lt;w:style</span><span class="ot"> w:type=</span><span class="st">&quot;character&quot;</span><span class="ot"> w:customStyle=</span><span class="st">&quot;1&quot;</span><span class="ot"> w:styleId=</span><span class="st">&quot;VerbatimChar&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true"></a>    <span class="kw">&lt;w:name</span><span class="ot"> w:val=</span><span class="st">&quot;Verbatim Char&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true"></a>    <span class="kw">&lt;w:basedOn</span><span class="ot"> w:val=</span><span class="st">&quot;BodyTextChar&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true"></a>    <span class="kw">&lt;w:rPr&gt;</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true"></a>      <span class="kw">&lt;w:rFonts</span><span class="ot"> w:ascii=</span><span class="st">&quot;Courier New&quot;</span><span class="ot"> w:hAnsi=</span><span class="st">&quot;Courier New&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true"></a>      <span class="kw">&lt;w:sz</span><span class="ot"> w:val=</span><span class="st">&quot;18&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true"></a>    <span class="kw">&lt;/w:rPr&gt;</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true"></a>  <span class="kw">&lt;/w:style&gt;</span></span></code></pre></div>
+<ol start="2" type="1">
+<li>Set the default paragraph alignment to <em>justified</em>:</li>
+</ol>
+<div class="sourceCode" id="cb27"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a>  <span class="co">&lt;!-- Locate the styleId &#39;BodyText&#39; --&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true"></a>  <span class="co">&lt;!-- Set the default alignment to be justified, which is named &#39;both&#39; --&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true"></a>  <span class="kw">&lt;w:style</span><span class="ot"> w:type=</span><span class="st">&quot;paragraph&quot;</span><span class="ot"> w:styleId=</span><span class="st">&quot;BodyText&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true"></a>    <span class="kw">&lt;w:name</span><span class="ot"> w:val=</span><span class="st">&quot;Body Text&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true"></a>    <span class="kw">&lt;w:basedOn</span><span class="ot"> w:val=</span><span class="st">&quot;Normal&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true"></a>    <span class="kw">&lt;w:link</span><span class="ot"> w:val=</span><span class="st">&quot;BodyTextChar&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true"></a>    <span class="kw">&lt;w:pPr&gt;</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true"></a>      <span class="kw">&lt;w:spacing</span><span class="ot"> w:before=</span><span class="st">&quot;180&quot;</span><span class="ot"> w:after=</span><span class="st">&quot;180&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true"></a>      <span class="kw">&lt;w:jc</span><span class="ot"> w:val=</span><span class="st">&quot;both&quot;</span><span class="kw">/&gt;</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true"></a>    <span class="kw">&lt;/w:pPr&gt;</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true"></a>    <span class="kw">&lt;w:qFormat</span> <span class="kw">/&gt;</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true"></a>  <span class="kw">&lt;/w:style&gt;</span></span></code></pre></div>
+<ol start="3" type="1">
+<li>Insert a page break before each ‘Heading1’:</li>
+</ol>
+<div class="sourceCode" id="cb28"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true"></a>  <span class="co">&lt;!-- Locate the styleId &#39;Heading1&#39; and add a pageBreakBefore --&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true"></a>  <span class="kw">&lt;w:style</span><span class="ot"> w:type=</span><span class="st">&quot;paragraph&quot;</span><span class="ot"> w:styleId=</span><span class="st">&quot;Heading1&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true"></a>    <span class="kw">&lt;w:name</span><span class="ot"> w:val=</span><span class="st">&quot;Heading 1&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true"></a>    <span class="kw">&lt;w:basedOn</span><span class="ot"> w:val=</span><span class="st">&quot;Normal&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true"></a>    <span class="kw">&lt;w:next</span><span class="ot"> w:val=</span><span class="st">&quot;BodyText&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true"></a>    <span class="kw">&lt;w:uiPriority</span><span class="ot"> w:val=</span><span class="st">&quot;9&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true"></a>    <span class="kw">&lt;w:qFormat</span> <span class="kw">/&gt;</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true"></a>    <span class="kw">&lt;w:pPr&gt;</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true"></a>      <span class="kw">&lt;w:pageBreakBefore/&gt;</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true"></a>      <span class="kw">&lt;w:keepNext</span> <span class="kw">/&gt;</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true"></a>      <span class="kw">&lt;w:keepLines</span> <span class="kw">/&gt;</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true"></a>      <span class="kw">&lt;w:spacing</span><span class="ot"> w:before=</span><span class="st">&quot;480&quot;</span><span class="ot"> w:after=</span><span class="st">&quot;0&quot;</span> <span class="kw">/&gt;</span></span></code></pre></div>
+<!-- , and contains the following modifications. -->
+<h3 id="files-which-control-style">Files which control style</h3>
+<h4 id="i-css"><em>style.css</em></h4>
+<p>Only for HTML (and EPUB) output you can provide your own CSS<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> files. You can add as many style sheets as you want simply by adding multiple <em>-c</em> options:</p>
+<p><em>-c thisfile.css -c SOME_URL -c anotherfile.css</em></p>
+<p>Remember that later stylesheets can override previous stylesheet items when the same element’s style is defined; therefore order is important.</p>
+<p>The included <em>makefile</em> uses the following css style file order. I rather like <a href="https://github.com/vincentdoerig/latex-css">this latex-like css style</a> file. You can obviously update the Makefile and use other style files which you prefer.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true"></a><span class="kw">$ pandoc ... -c https://latex.now.sh/style.css -c style.css ...</span></span></code></pre></div>
+<h3 id="files-which-control-syntax-highlighting">Files which control syntax highlighting</h3>
+<p>Pandoc allows you to add syntax highlighting to enhance and differentiate the syntax in computer languages, scripting or other relevant digital output. Highlighted text immediately clarifies the different functionality in the target text.</p>
+<p>You can get a list of the languages which Pandoc can present with syntax highlighting:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true"></a><span class="co">// There are 134 &#39;languages&#39; which can be highlighted:</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true"></a><span class="kw">$ pandoc --list-highlight-languages | wc -l</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true"></a>134</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true"></a><span class="kw">$ pandoc --list-highlight-languages | tail</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true"></a>yaml</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true"></a>yacc</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true"></a>zsh</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true"></a>dot</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true"></a>noweb</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true"></a>rest</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true"></a>sci</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true"></a>sed</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true"></a>xorg</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true"></a>xslt</span></code></pre></div>
+<p>And there are 8 different styles. To see the effect of these styles see <a href="https://www.garrickadenbuie.com/blog/pandoc-syntax-highlighting-examples/">Garrick’s examples</a>.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="kw">$ pandoc --list-highlight-styles</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a>pygments</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true"></a>tango</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true"></a>espresso</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true"></a>zenburn</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true"></a>kate</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true"></a>monochrome</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true"></a>breezedark</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true"></a>haddock</span></code></pre></div>
+<p>But you can also add your own syntax highlighting rules and styles, which is what I have done. I introduced a new syntax highlighting mode for command-line sessions for Markdown documents which is named <strong>console</strong>.</p>
+<p>Then <em>pandoc</em> consumes these 2 files and generates the new highlighting in target documents:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true"></a><span class="kw">$ pandoc ... --syntax-definition=console.xml --highlight-style=custom-highlight.theme ...</span></span></code></pre></div>
+<h4 id="i-xml"><em>console.xml</em></h4>
+<p>This file describes how some console text strings are recognized, and assigns a pre-defined style to them.</p>
+<h4 id="i-theme"><em>custom-highlight.theme</em></h4>
+<p>Then this theme file provides the pre-defined text styles specified by the <em>console.xml</em> file.</p>
+<h3 id="editor-files-for-vimgvim">Editor files for <em>vim</em>/<em>gvim</em></h3>
+<p>While it is nice to have customized syntax highlighting in your final document, it is also extremely helpful to have your text editor know about the customized syntax highlighting and present similar highlighting.</p>
+<p>I have created a syntax configuration file for <a href="https://en.wikipedia.org/wiki/Vim_(text_editor)">vim and gvim</a>, my editors of choice. At version 8.2 the editor recognizes over 600 computer languages, scripts and console input/output.</p>
+<h4 id="i-vimsyn">Set syntax for ‘console’ I/O: <em>vim.syntax</em> and <em>vim.ftdetect</em></h4>
+<p>Install these files into *~/.vim/:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true"></a><span class="kw">$ mkdir -p ~/.vim/ftdetect  ~/.vim/syntax</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true"></a><span class="kw">$ cp -p /path/to/vim.ftdetect ~/.vim/ftdetect/console.vim</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true"></a><span class="kw">$ cp -p /path/to/vim.syntax ~/.vim/syntax/console.vim</span></span></code></pre></div>
+<p>This simple syntax definition file works because it piggybacks on the existing <em>Markdown</em> syntax highlighting file that vim uses:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true"></a><span class="co">// </span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true"></a><span class="kw">$ head /usr/share/vim/vim82/syntax/markdown.vim </span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true"></a>&quot; Vim syntax file</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true"></a>&quot; Language:     Markdown</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true"></a>&quot; Maintainer:   Tim Pope &lt;vimNOSPAM@tpope.org&gt;</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true"></a>&quot; Filenames:    *.markdown</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true"></a>&quot; Last Change:  2020 Jan 14</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true"></a>...</span></code></pre></div>
+<h4 id="i-vimrc">Example <strong>~/.vimrc</strong> configuration file: <em>vimrc.example</em></h4>
+<p>The <em>vimrc.example</em> is a minimal startup file that should be renamed or added to your current vim configuration file which is named <em>~/.vimrc</em></p>
+<p>For the <em>console.vim</em> file to work in a vim editor when editing Markdown files you need to add it to the array of Markdown fenced languages; that is:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true"></a><span class="kw">$ cat ~/.vimrc</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true"></a>...</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true"></a>let g:markdown_fenced_languages = [&#39;console&#39;, &#39;sh&#39;, &#39;php&#39;, &#39;mysql&#39;, &#39;css&#39;]</span></code></pre></div>
+<!-- -->
+<h1 id="examples-of-pandocs-markdown-usage">Examples of Pandoc’s Markdown usage</h1>
+<p>There are many resources about using Pandoc’s Markdown flavour; here are some detailed links to look at:</p>
+<ul>
+<li><a href="https://pandoc.org/MANUAL.html#pandocs-markdown">The official Pandoc manual</a></li>
+<li><a href="https://uoftcoders.github.io/studyGroup/lessons/misc/pandoc-intro/lesson/">Introduction to Pandoc</a></li>
+<li><a href="https://www.flutterbys.com.au/stats/tut/tut17.3.html">A tutorial on Markdown and Pandoc</a></li>
+<li><a href="https://www.markdownguide.org/cheat-sheet/">A cheat sheet for generic Markdown</a></li>
+<li><a href="https://users.ssc.wisc.edu/~hemken/Stataworkshops/stmd/Markdown/markdownelements1.html">A rundown on Markdown elements</a></li>
+<li><a href="https://garrettgman.github.io/rmarkdown/authoring_pandoc_markdown.html">Pandoc Markdown</a></li>
+</ul>
+<p>In this chapter I want to show a summary of common Pandoc’s Markdown elements. Not all elements are shown here – I picked the ones that I tend to use. The web links above provide greater detail.</p>
+<p>Most elements are easy to remember since Markdown is all about writing simple text.</p>
+<p>Except for the example <em>table</em> element, all other example elements are embedded in a table with the <em>element name</em> in the left column, the <em>markdown code</em> in the centre column, and the <em>generated output</em> in the right column.</p>
+<p>Markdown elements are sometimes explained the way HTML elements are - generally speaking they are divided into two categories: <a href="https://cran.r-project.org/web/packages/gluedown/vignettes/literal-programming.html"><em>block</em> elements and <em>inline</em> elements</a>.</p>
+<p><strong>Block elements</strong> are further divided into <em>container</em> blocks and <em>leaf</em> blocks. Container block elements may contain other block elements as well as <em>inline</em> elements. Leaf elements may only include <em>inline</em> elements – the exceptions in this group are code blocks and horizontal rules which cannot contain anything.</p>
+<p>Block elements typically span at least an entire line. Block elements are very sensitive to having some white space around them. It is a good idea to put an empty line before and after them.</p>
+<p><strong>Inline elements</strong> are rather solitary, and typically occur in less than a line of text. The main defining feature though is that an inline element cannot contain other elements.</p>
+<h2 id="leaf-block-elements">Leaf Block Elements</h2>
+<h3 id="paragraph-structures-and-headings">Paragraph structures and Headings</h3>
+<p>Paragraphs are simply text sequences of lines separated by at least one blank line.</p>
+<p>Headings are the elements that provide a <em>table of contents</em> and give the document a hierarchical structure. I use the ATX-style headings, which use the pound sign – <strong>#</strong> – and consist of up to 6 levels of heading markers, one for each pound sign. The level with one pound sign is the top level.</p>
+<table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 32%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Markdown</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Headings</strong></td>
+<td><pre><code>#### Heading 4th level
+
+##### Heading 5th level</code></pre></td>
+<td><h4 id="heading-4th-level">Heading 4th level</h4>
+<h5 id="heading-5th-level">Heading 5th level</h5></td>
+</tr>
+</tbody>
+</table>
+<h3 id="fenced-code-blocks">Fenced code blocks</h3>
+<p>These code blocks are surrounded by a ‘fence’ in that they are surrounded by a sequence of 3 or more backticks or tildes. All text inside the fence is rendered as-is, without interpretation by the Markdown processor.</p>
+<p>Moreover, the code block can be marked by an attribute that labels the kind of code inside the fence. In this guide I use the <a href="https://deatrich.github.io/console-syntax/"><em>console</em></a> attribute.</p>
+<table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 32%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Markdown</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Code Blocks</strong></td>
+<td><pre><code>```console
+// This is a comment
+$ echo I am a user
+# echo I am root
+
+```</code></pre></td>
+<td><div class="sourceCode" id="cb38"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true"></a><span class="co">// This is a comment</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true"></a><span class="kw">$ echo I am a user</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true"></a><span class="fu"># echo I am root</span></span></code></pre></div></td>
+</tr>
+</tbody>
+</table>
+<h3 id="horizontal-rule">Horizontal rule</h3>
+<p>Horizontal rules are also known as <em>theme breaks</em>.</p>
+<table style="width:96%;">
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Element</th>
+<th style="text-align: left;">Markdown</th>
+<th style="text-align: left;">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Horizontal rule</strong></td>
+<td style="text-align: left;"><pre><code>---</code></pre></td>
+<td style="text-align: left;"><hr /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="container-block-elements">Container Block Elements</h2>
+<h3 id="block-quotations">Block quotations</h3>
+<p>Quoting something is done with with the greater-than character – <strong>&gt;</strong> – in front of each line (or in lazy mode, only the first line).</p>
+<table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 32%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Markdown</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Block quote</strong></td>
+<td><p>Here is a quote:</p>
+<pre><code>&gt; *this is a quote*</code></pre></td>
+<td><p>Here is a quote:</p>
+<blockquote>
+<p><em>this is a quote</em></p>
+</blockquote></td>
+</tr>
+<tr class="even">
+<td><strong>Block quote</strong></td>
+<td><p>This one is nested:</p>
+<pre><code>&gt; this is a quote
+&gt;
+&gt; &gt; a deeper quote</code></pre></td>
+<td><p>This one is nested:</p>
+<blockquote>
+<p>this is a quote</p>
+<blockquote>
+<p>a deeper quote</p>
+</blockquote>
+</blockquote></td>
+</tr>
+</tbody>
+</table>
+<h3 id="lists">Lists</h3>
+<p>Here are 3 kinds of lists; only the <em>definition list</em> is typically not implemented in many flavours of Markdown:</p>
+<table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 32%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Markdown</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Bullet List</strong></td>
+<td><pre><code>   * item x
+   * item y
+   * item z</code></pre></td>
+<td><ul>
+<li>item x</li>
+<li>item y</li>
+<li>item z</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><strong>Ordered List</strong></td>
+<td><pre><code>   #. item x
+   #. item y
+   #. item z</code></pre></td>
+<td><ol>
+<li>item x</li>
+<li>item y</li>
+<li>item z</li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td><strong>Definition List</strong></td>
+<td><pre><code>Some Term:
+
+:    Definition 1
+:    More information
+:    And more info</code></pre></td>
+<td><dl>
+<dt>Some Term:</dt>
+<dd><p>Definition 1</p>
+</dd>
+<dd>More information
+</dd>
+<dd>And more info
+</dd>
+</dl></td>
+</tr>
+</tbody>
+</table>
+<h3 id="tables">Tables</h3>
+<p>There are a few kinds of tables, but the kind I am using in this document are <em>grid tables</em>. Note that tables might confuse your editor if it is trying to do syntax highlighting – that has been my experience with gvim at least.</p>
+<p>Generally speaking, tables are a bit fussy to create in many document types. I wrote a <a href="#i-tabscript">shell script to generate empty grid tables</a> that makes it a bit easier to get started with a table.</p>
+<p>Tables in Pandoc Markdown act as container block elements, in that they may contain other elements. The exception I have found is other tables; you cannot yet embed a table inside another table.</p>
+<p>Here is a modified table borrowed from the <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">Pandoc manual</a>. It also contains alignment hints. Alignment (left, centre, right) in Markdown is indicated by the <em>colon</em> character at the upper edge of the first row in the table. So in the following table the left column is left-aligned, the center column is centred, and the right column is right aligned:</p>
+<table style="width:58%;">
+<caption>This is a table caption.</caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 18%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Fruit</th>
+<th style="text-align: center;">In Stock</th>
+<th style="text-align: right;">Price</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><em>Bananas</em></td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: right;">$1.34</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Oranges</strong></td>
+<td style="text-align: center;">No</td>
+<td style="text-align: right;">$2.10</td>
+</tr>
+</tbody>
+</table>
+<p>In Markdown language it looks like the following:</p>
+<pre><code>+--------------+------------+-------------+
+| Fruit        | In Stock   | Price       |
++:=============+:==========:+============:+
+| *Bananas*    | Yes        | $1.34       |
++--------------+------------+-------------+
+| **Oranges**  | No         | $2.10       |
++--------------+------------+-------------+
+
+Table: This is a table caption.</code></pre>
+<h3 id="footnotes-and-inline-notes">Footnotes and ‘inline’ notes</h3>
+<p>To generate a note or footnote, the caret character – <strong>^</strong> – is used:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Element</th>
+<th style="text-align: left;">Markdown</th>
+<th style="text-align: left;">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Inline note</strong> (no reference needed)</td>
+<td style="text-align: left;"><pre><code>Inline Eg^[my **note**]</code></pre></td>
+<td style="text-align: left;"><div class="line-block">Inline Eg<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></div></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Footnote</strong> (a reference is needed)</td>
+<td style="text-align: left;"><pre><code>Footnote Eg[^note]</code></pre></td>
+<td style="text-align: left;">Footnote Eg<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">(This is the footnote reference)</td>
+<td style="text-align: left;"><pre><code>[^note]: I am here..</code></pre></td>
+<td style="text-align: left;">(See me at page bottom)</td>
+</tr>
+</tbody>
+</table>
+<!--
+Odd elements:
+ YAML metadata blocks
+-->
+<h2 id="inline-elements">Inline elements</h2>
+<h3 id="formatting-elements">Formatting elements</h3>
+<p>These elements alter the appearance of enclosed words or phrases:</p>
+<table style="width:96%;">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Element</th>
+<th style="text-align: left;">Markdown</th>
+<th style="text-align: left;">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Strikeout</strong></td>
+<td style="text-align: left;"><pre><code>~~Example~~</code></pre></td>
+<td style="text-align: left;"><del>Example</del></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Emphasis</strong> (italics)</td>
+<td style="text-align: left;"><pre><code>*Example*</code></pre></td>
+<td style="text-align: left;"><em>Example</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Strong Emphasis</strong> (bold)</td>
+<td style="text-align: left;"><pre><code>**Example**</code></pre></td>
+<td style="text-align: left;"><strong>Example</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Superscript</strong></td>
+<td style="text-align: left;"><pre><code>this^Example^</code></pre></td>
+<td style="text-align: left;">this<sup>Example</sup></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Subscript</strong></td>
+<td style="text-align: left;"><pre><code>this~Example~</code></pre></td>
+<td style="text-align: left;">this<sub>Example</sub></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Underline</strong> (works in html output)</td>
+<td style="text-align: left;"><pre><code>[Example]{.underline}</code></pre></td>
+<td style="text-align: left;"><span class="underline">Example</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Underline</strong> (works in pdf output)</td>
+<td style="text-align: left;"><pre><code>\underline{Example}</code></pre></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Small Caps</strong></td>
+<td style="text-align: left;"><pre><code>[Example]{.smallcaps}</code></pre></td>
+<td style="text-align: left;"><span class="smallcaps">Example</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Inline Code</strong></td>
+<td style="text-align: left;"><pre><code>`# echo Eg`{.console}</code></pre></td>
+<td style="text-align: left;"><code class="sourceCode console"><span class="fu"># echo Eg</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="links">Links</h3>
+<p>There are two kinds of links:</p>
+<dl>
+<dt>Links to external resources</dt>
+<dd>I like to mark a link with a label and list the marked link at the end of the section or at the end of the document.
+</dd>
+<dt>Links to internal document information</dt>
+<dd>Typically you want to link to a heading somewhere in the document. You can add a <em>label</em> to a heading so that you can link to it elsewhere. Pandoc automatically generates label names for headings in order to link a table of contents at the beginning of the document.
+</dd>
+</dl>
+<table style="width:96%;">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 40%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Element</th>
+<th style="text-align: left;">Markdown</th>
+<th style="text-align: left;">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>External Link</strong> with a label</td>
+<td style="text-align: left;"><pre><code>Try out [this link][tiny]
+
+
+[tiny]: https://t.ly/</code></pre></td>
+<td style="text-align: left;">Try out <a href="https://t.ly/">this link</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Internal Link</strong></td>
+<td style="text-align: left;"><pre><code>Look at [topic X](#top-x)
+
+(later in the document)
+
+#### Topic X {#top-x}
+</code></pre></td>
+<td style="text-align: left;"><p>Look at <a href="#top-x">topic X</a></p>
+<h4 id="top-x">Topic X</h4></td>
+</tr>
+</tbody>
+</table>
+<h3 id="images">Images</h3>
+<p>The <em>docx</em> output format does not handle scaling of images in the output presentation. The first image is 640x480 pixels; the second is 128x96 pixels. Both images are properly presented with <em>html</em> and <em>pdf</em> output formats.</p>
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 40%" />
+<col style="width: 44%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Element</th>
+<th style="text-align: left;">Markdown</th>
+<th style="text-align: left;">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Image</strong></td>
+<td style="text-align: left;"><pre><code>
+![Pi](dood.png){width=100%}
+</code></pre></td>
+<td style="text-align: left;"><img src="dood.png" title="fig:" style="width:100.0%" alt="Pi" /></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Image</strong> <em>scaled</em></td>
+<td style="text-align: left;"><pre><code>
+![Pi](dood2.png){width=100%}
+</code></pre></td>
+<td style="text-align: left;"><img src="dood2.png" title="fig:" style="width:100.0%" alt="Pi" /></td>
+</tr>
+</tbody>
+</table>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Cascading Style Sheet<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>my <strong>note</strong><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>I am here..<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
