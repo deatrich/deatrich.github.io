@@ -1,0 +1,6 @@
+## robots.txt
+
+
+## Not there yet:
+## Sitemap: https://deatrich.github.io/sitemap.xml
+
