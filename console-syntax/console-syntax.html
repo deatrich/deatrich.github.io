@@ -84,7 +84,7 @@
 <h1 class="title">Console Syntax Highlighting</h1>
 <p class="author">Denice Deatrich
   <br />Created: August 2023
-  <br />Last update: 23 August 2023
+  <br />Last update: 01 September 2023
 </p>
 </header>
 <!-- Pandoc metadata, mostly used when generating PDF
@@ -121,7 +121,7 @@
 </ul>
 <p>The <em>test.console</em> file can be used to test whether your local configuration works. It also explains the simple syntax requirements which invoke the highlighter.</p>
 <p>The contents of this file are <a href="#test.console">embedded in a fenced code block</a> at the end of this document.</p>
-<h2 id="configure-gvimvim">Configure Gvim/Vim</h2>
+<h2 id="vim">Configure Gvim/Vim</h2>
 <p>For the Gvim or Vim editors, the Vim files should be installed in your home directory:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">// Change directories to your home directory:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">$ cd</span></span>
@@ -138,7 +138,7 @@
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">$ vim ~/.vimrc</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="kw">$ grep fenced_languages ~/.vimrc</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>let g:markdown_fenced_languages = [&#39;console&#39;]</span></code></pre></div>
-<h2 id="configure-kate">Configure Kate</h2>
+<h2 id="kate">Configure Kate</h2>
 <p>For the Kate editor, it will depend on the version of Kate you are using. In my case on Ubuntu LTS 22.04 the console.xml file is installed this way:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">// Change directories to your home directory:</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">$ cd</span></span>
