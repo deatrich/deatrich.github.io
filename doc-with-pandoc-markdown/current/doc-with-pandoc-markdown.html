@@ -90,7 +90,7 @@
 <h1 class="title">Getting Started With Pandoc Markdown</h1>
 <p class="author">Denice Deatrich
   <br />Created: July 2023
-  <br />Last update: 30 August 2023
+  <br />Last update: 01 September 2023
 </p>
 </header>
 <nav id="TOC" role="doc-toc">
@@ -100,6 +100,7 @@
 <ul>
 <li><a href="#about-this-document">About this Document</a></li>
 <li><a href="#guide-outline">Guide outline</a></li>
+<li><a href="#where-to-find-this-guide">Where to find this guide</a></li>
 </ul></li>
 <li><a href="#creating-a-pandoc-workspace">Creating a Pandoc workspace</a>
 <ul>
@@ -256,10 +257,25 @@
 <h2 id="guide-outline">Guide outline</h2>
 <p>In this guide I cover the following topics. It should be enough to get you started writing documentation in Markdown.</p>
 <p>We start by setting up your workspace. We install Pandoc, as well as my favourite editor (or your favourite editor) and a few PDF viewers. Other viewers like Firefox and LibreOffice are typically already installed.</p>
-<p>Though spell checking is primitive, we take a look at <em>aspell</em>, and I show how to install the needed Lua filters and how to use them.</p>
+<p>Though spell checking is primitive, we take a look at <em>aspell</em>, and I also show how to install the spell-checking Lua filter and how to use it.</p>
 <p>Then we pull the files from this project and from the ‘console syntax’ project on <em>github.com</em> and install them into your home directory. We also test the installation by running ‘make’ on the initial generated project.</p>
 <p>I give a quick overview of the purpose of the provided tools and files.</p>
 <p>The final section of this guide is an outline of Markdown elements so that you have a quick start on common Markdown elements.</p>
+<h2 id="where-to-find-this-guide">Where to find this guide</h2>
+<p>HTML, DOCX and PDF versions of this guide can be found at:</p>
+<dl>
+<dt>HTML:</dt>
+<dd><a href="https://deatrich.github.io/doc-with-pandoc-markdown/current/doc-with-pandoc-markdown.html">https://deatrich.github.io/doc-with-pandoc-markdown/current/doc-with-pandoc-markdown.html</a>
+</dd>
+<dt>PDF:</dt>
+<dd><a href="https://deatrich.github.io/doc-with-pandoc-markdown/current/doc-with-pandoc-markdown.pdf">https://deatrich.github.io/doc-with-pandoc-markdown/current/doc-with-pandoc-markdown.pdf</a>
+</dd>
+<dt>DOCX:</dt>
+<dd><a href="https://deatrich.github.io/doc-with-pandoc-markdown/current/doc-with-pandoc-markdown.docx">https://deatrich.github.io/doc-with-pandoc-markdown/current/doc-with-pandoc-markdown.docx</a>
+</dd>
+</dl>
+<p><br />
+</p>
 <!-- -->
 <h1 id="creating-a-pandoc-workspace">Creating a Pandoc workspace</h1>
 <p>An installation of Pandoc along with the requisite latex support files is needed. In this document I install Pandoc on Ubuntu LTS 22.04. Other Linux distributions will have differing package name and differing package dependencies.</p>
@@ -423,7 +439,7 @@
 <!-- -->
 <h1 id="installing-the-project-files">Installing the project files</h1>
 <h2 id="getting-the-files">Getting the files</h2>
-<p>The files provided with this project can be downloaded from these two relevant projects found on ‘github’:</p>
+<p>The files provided with this project can be downloaded from these two required projects found on ‘github’:</p>
 <ul>
 <li><a href="https://github.com/deatrich/doc-with-pandoc-markdown">https://github.com/deatrich/doc-with-pandoc-markdown</a></li>
 <li><a href="https://github.com/deatrich/console-syntax">https://github.com/deatrich/console-syntax</a></li>
@@ -502,7 +518,6 @@
 <li><a href="#i-guide">guide-template.md</a></li>
 <li><a href="#i-chapter">chapter-template.md</a></li>
 <li><a href="#i-metadata">metadata.md</a></li>
-<li><a href="#i-metadata-docx">metadata-docx.md</a></li>
 </ul></li>
 <li><p>Pandoc templates affecting document content and presentation:</p>
 <ul>
@@ -634,7 +649,7 @@
 <p>You can always generate your own reference.docx file using pandoc rather than using the file included with this project:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a><span class="kw">$ pandoc --print-default-data-file reference.docx &gt; custom-reference.docx</span></span></code></pre></div>
 <p>Then you can use your word processor and modify the document styles. Note that only modifications that impact the document style are used; any other kind of modification will be ignored by Pandoc.</p>
-<p>The provided ‘custom-reference.docx’ file was modified directly; here are the modifications made:</p>
+<p>The provided ‘custom-reference.docx’ file was modified directly. Here are the instructions for unpacking the docx file, modifying the styles, and re-zipping the reference file:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a><span class="co">// Start by unzipping the file so that you can access &#39;styles.xml&#39;</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a><span class="kw">$ mkdir ~/styles</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true"></a><span class="kw">$ cd ~/styles</span></span>
@@ -662,7 +677,9 @@
 <span id="cb25-25"><a href="#cb25-25" aria-hidden="true"></a><span class="co">// we used ~/styles/</span></span>
 <span id="cb25-26"><a href="#cb25-26" aria-hidden="true"></a><span class="kw">$ pwd</span></span>
 <span id="cb25-27"><a href="#cb25-27" aria-hidden="true"></a>/home/myname/styles/</span>
-<span id="cb25-28"><a href="#cb25-28" aria-hidden="true"></a><span class="kw">$ zip -r ../custom-reference-new.docx *</span></span></code></pre></div>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true"></a></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true"></a><span class="co">// place the docx file above the current directory:</span></span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true"></a><span class="kw">$ zip -r ../custom-reference-new.docx *</span></span></code></pre></div>
 <p>Here are the XML changes made to the supplied ‘custom-reference.docx’ file:</p>
 <ol type="1">
 <li>Make fenced code blocks use a better font as well as a smaller font size:</li>
@@ -707,16 +724,15 @@
 <span id="cb28-10"><a href="#cb28-10" aria-hidden="true"></a>      <span class="kw">&lt;w:keepNext</span> <span class="kw">/&gt;</span></span>
 <span id="cb28-11"><a href="#cb28-11" aria-hidden="true"></a>      <span class="kw">&lt;w:keepLines</span> <span class="kw">/&gt;</span></span>
 <span id="cb28-12"><a href="#cb28-12" aria-hidden="true"></a>      <span class="kw">&lt;w:spacing</span><span class="ot"> w:before=</span><span class="st">&quot;480&quot;</span><span class="ot"> w:after=</span><span class="st">&quot;0&quot;</span> <span class="kw">/&gt;</span></span></code></pre></div>
-<!-- , and contains the following modifications. -->
 <h3 id="files-which-control-style">Files which control style</h3>
 <h4 id="i-css"><em>style.css</em></h4>
-<p>Only for HTML (and EPUB) output you can provide your own CSS<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> files. You can add as many style sheets as you want simply by adding multiple <em>-c</em> options:</p>
+<p>You can provide your own CSS<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> files for HTML (and EPUB) output. Add as many style sheets as you want simply by adding multiple <em>-c</em> options:</p>
 <p><em>-c thisfile.css -c SOME_URL -c anotherfile.css</em></p>
-<p>Remember that later stylesheets can override previous stylesheet items when the same element’s style is defined; therefore order is important.</p>
-<p>The included <em>makefile</em> uses the following css style file order. I rather like <a href="https://github.com/vincentdoerig/latex-css">this latex-like css style</a> file. You can obviously update the Makefile and use other style files which you prefer.</p>
+<p>Remember that later style sheets can override previous style sheet items when the same element’s style is defined; therefore order is important.</p>
+<p>The included <em>makefile</em> uses the following CSS style file order. I rather like <a href="https://github.com/vincentdoerig/latex-css">this latex-like CSS style file from <em>latex.now.sh</em></a>. You can obviously update the Makefile and use other style files which you prefer.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true"></a><span class="kw">$ pandoc ... -c https://latex.now.sh/style.css -c style.css ...</span></span></code></pre></div>
 <h3 id="files-which-control-syntax-highlighting">Files which control syntax highlighting</h3>
-<p>Pandoc allows you to add syntax highlighting to enhance and differentiate the syntax in computer languages, scripting or other relevant digital output. Highlighted text immediately clarifies the different functionality in the target text.</p>
+<p>Pandoc allows you to add syntax highlighting to enhance and differentiate the syntax in computer languages, scripting or other relevant digital output. Highlighted text visually clarifies the different functionality in the target text.</p>
 <p>You can get a list of the languages which Pandoc can present with syntax highlighting:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true"></a><span class="co">// There are 134 &#39;languages&#39; which can be highlighted:</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true"></a><span class="kw">$ pandoc --list-highlight-languages | wc -l</span></span>
@@ -732,47 +748,29 @@
 <span id="cb30-12"><a href="#cb30-12" aria-hidden="true"></a>sed</span>
 <span id="cb30-13"><a href="#cb30-13" aria-hidden="true"></a>xorg</span>
 <span id="cb30-14"><a href="#cb30-14" aria-hidden="true"></a>xslt</span></code></pre></div>
-<p>And there are 8 different styles. To see the effect of these styles see <a href="https://www.garrickadenbuie.com/blog/pandoc-syntax-highlighting-examples/">Garrick’s examples</a>.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="kw">$ pandoc --list-highlight-styles</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a>pygments</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true"></a>tango</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true"></a>espresso</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true"></a>zenburn</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true"></a>kate</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true"></a>monochrome</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true"></a>breezedark</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true"></a>haddock</span></code></pre></div>
-<p>But you can also add your own syntax highlighting rules and styles, which is what I have done. I introduced a new syntax highlighting mode for command-line sessions for Markdown documents which is named <strong>console</strong>.</p>
-<p>Then <em>pandoc</em> consumes these 2 files and generates the new highlighting in target documents:</p>
+<p>There are 8 different syntax highlighting styles provided by Pandoc. To see the effect of these styles, see <a href="https://www.garrickadenbuie.com/blog/pandoc-syntax-highlighting-examples/">Garrick’s examples</a>.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="co">// The default syntax highlighting style is &#39;pygments&#39;.</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a><span class="kw">$ pandoc --list-highlight-styles</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true"></a>pygments</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true"></a>tango</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true"></a>espresso</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true"></a>zenburn</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true"></a>kate</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true"></a>monochrome</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true"></a>breezedark</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true"></a>haddock</span></code></pre></div>
+<p>But you can also add your own syntax highlighting rules and styles, which is what I have done. I introduced a new syntax highlighting mode for command-line sessions for Markdown documents which is named <a href="https://deatrich.github.io/console-syntax/"><em>console</em></a>.</p>
+<p>Then <em>pandoc</em> consumes the following 2 files and generates the new highlighting in target documents:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true"></a><span class="kw">$ pandoc ... --syntax-definition=console.xml --highlight-style=custom-highlight.theme ...</span></span></code></pre></div>
 <h4 id="i-xml"><em>console.xml</em></h4>
 <p>This file describes how some console text strings are recognized, and assigns a pre-defined style to them.</p>
+<p>This same file can be used to configure the <a href="https://kate-editor.org/">Kate</a> editor so that it is able to do this custom syntax highlighting. See the console syntax highlighting project for information on <a href="https://deatrich.github.io/console-syntax/index.html#kate">configuring the Kate editor</a>.</p>
 <h4 id="i-theme"><em>custom-highlight.theme</em></h4>
 <p>Then this theme file provides the pre-defined text styles specified by the <em>console.xml</em> file.</p>
 <h3 id="editor-files-for-vimgvim">Editor files for <em>vim</em>/<em>gvim</em></h3>
 <p>While it is nice to have customized syntax highlighting in your final document, it is also extremely helpful to have your text editor know about the customized syntax highlighting and present similar highlighting.</p>
 <p>I have created a syntax configuration file for <a href="https://en.wikipedia.org/wiki/Vim_(text_editor)">vim and gvim</a>, my editors of choice. At version 8.2 the editor recognizes over 600 computer languages, scripts and console input/output.</p>
-<h4 id="i-vimsyn">Set syntax for ‘console’ I/O: <em>vim.syntax</em> and <em>vim.ftdetect</em></h4>
-<p>Install these files into *~/.vim/:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true"></a><span class="kw">$ mkdir -p ~/.vim/ftdetect  ~/.vim/syntax</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true"></a></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true"></a><span class="kw">$ cp -p /path/to/vim.ftdetect ~/.vim/ftdetect/console.vim</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true"></a><span class="kw">$ cp -p /path/to/vim.syntax ~/.vim/syntax/console.vim</span></span></code></pre></div>
-<p>This simple syntax definition file works because it piggybacks on the existing <em>Markdown</em> syntax highlighting file that vim uses:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true"></a><span class="co">// </span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true"></a><span class="kw">$ head /usr/share/vim/vim82/syntax/markdown.vim </span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true"></a>&quot; Vim syntax file</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true"></a>&quot; Language:     Markdown</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true"></a>&quot; Maintainer:   Tim Pope &lt;vimNOSPAM@tpope.org&gt;</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true"></a>&quot; Filenames:    *.markdown</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true"></a>&quot; Last Change:  2020 Jan 14</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true"></a>...</span></code></pre></div>
-<h4 id="i-vimrc">Example <strong>~/.vimrc</strong> configuration file: <em>vimrc.example</em></h4>
-<p>The <em>vimrc.example</em> is a minimal startup file that should be renamed or added to your current vim configuration file which is named <em>~/.vimrc</em></p>
-<p>For the <em>console.vim</em> file to work in a vim editor when editing Markdown files you need to add it to the array of Markdown fenced languages; that is:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true"></a><span class="kw">$ cat ~/.vimrc</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true"></a>...</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true"></a>let g:markdown_fenced_languages = [&#39;console&#39;, &#39;sh&#39;, &#39;php&#39;, &#39;mysql&#39;, &#39;css&#39;]</span></code></pre></div>
+<p>See the console syntax highlighting project for information on <a href="https://deatrich.github.io/console-syntax/index.html#vim">configuring vim editors</a>.</p>
 <!-- -->
 <h1 id="examples-of-pandocs-markdown-usage">Examples of Pandoc’s Markdown usage</h1>
 <p>There are many resources about using Pandoc’s Markdown flavour; here are some detailed links to look at:</p>
@@ -844,9 +842,9 @@ $ echo I am a user
 # echo I am root
 
 ```</code></pre></td>
-<td><div class="sourceCode" id="cb38"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true"></a><span class="co">// This is a comment</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true"></a><span class="kw">$ echo I am a user</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true"></a><span class="fu"># echo I am root</span></span></code></pre></div></td>
+<td><div class="sourceCode" id="cb35"><pre class="sourceCode console"><code class="sourceCode console"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true"></a><span class="co">// This is a comment</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true"></a><span class="kw">$ echo I am a user</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true"></a><span class="fu"># echo I am root</span></span></code></pre></div></td>
 </tr>
 </tbody>
 </table>
@@ -976,7 +974,7 @@ $ echo I am a user
 <p>There are a few kinds of tables, but the kind I am using in this document are <em>grid tables</em>. Note that tables might confuse your editor if it is trying to do syntax highlighting – that has been my experience with gvim at least.</p>
 <p>Generally speaking, tables are a bit fussy to create in many document types. I wrote a <a href="#i-tabscript">shell script to generate empty grid tables</a> that makes it a bit easier to get started with a table.</p>
 <p>Tables in Pandoc Markdown act as container block elements, in that they may contain other elements. The exception I have found is other tables; you cannot yet embed a table inside another table.</p>
-<p>Here is a modified table borrowed from the <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">Pandoc manual</a>. It also contains alignment hints. Alignment (left, centre, right) in Markdown is indicated by the <em>colon</em> character at the upper edge of the first row in the table. So in the following table the left column is left-aligned, the center column is centred, and the right column is right aligned:</p>
+<p>Here is a modified table borrowed from the <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">Pandoc manual</a>. It also contains alignment hints. Alignment (left, centre, right) in Markdown is indicated by the <em>colon</em> character at the upper edge of the first row in the table. So in the following table the left column is left-aligned, the centre column is centred, and the right column is right aligned:</p>
 <table style="width:58%;">
 <caption>This is a table caption.</caption>
 <colgroup>
