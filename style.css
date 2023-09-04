@@ -42,6 +42,10 @@ h2 {
 dl dd {
   text-align: left;
 }
+dd {
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
 dt {
   font-weight: bold;
 }
