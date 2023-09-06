@@ -90,7 +90,7 @@
 <h1 class="title">Getting Started With Pandoc Markdown</h1>
 <p class="author">Denice Deatrich
   <br />Created: July 2023
-  <br />Last update: 04 September 2023
+  <br />Last update: 06 September 2023
 </p>
 </header>
 <nav id="TOC" role="doc-toc">
@@ -150,6 +150,7 @@
 </ul></li>
 </ul></li>
 <li><a href="#chapter-5">List of Common Linux Commands</a></li>
+<li><a href="#url-list">List of URLs mentioned in this guide</a></li>
 </ul>
 </nav>
 <!-- Pandoc metadata, mostly used when generating PDF
@@ -1308,6 +1309,97 @@ Odd elements:
 </dd>
 </dl>
 <!-- command-list-ends -->
+<!-- -->
+<h1 id="url-list">List of URLs mentioned in this guide</h1>
+<p>If any external URLs are linked in a chapter then they are displayed and linked below, organized by chapter name.</p>
+<p>The shell script which is used to generate this list is named:</p>
+<dl>
+<dt>generate-url-index.sh</dt>
+<dd>This bash program looks for external reference links.
+</dd>
+<dd><p>The link must occur at the start of a line.</p>
+</dd>
+<dd><p>The link conforms to Markdown norms for reference links; that is:</p>
+</dd>
+</dl>
+<pre><code>   [a-phrase-without-whitespace]: https://some.link.somewhere/something</code></pre>
+<p>Then the script outputs each link by full name, including the digital web link to itself. It might be useful in print-only media.</p>
+<dl>
+<dt><a href="#chapter-1">Overview</a>:</dt>
+<dd><p><a href="https://www.markdownguide.org/getting-started/">https://www.markdownguide.org/getting-started/</a></p>
+</dd>
+<dd><p><a href="https://pandoc.org/">https://pandoc.org/</a></p>
+</dd>
+<dd><p><a href="https://pandoc.org/MANUAL.html#options">https://pandoc.org/MANUAL.html#options</a></p>
+</dd>
+<dd><p><a href="https://deatrich.github.io/linux-home-server/latest-version/linux-server.html#doc">https://deatrich.github.io/linux-home-server/latest-version/linux-server.html#doc</a></p>
+</dd>
+<dd><p><a href="https://github.com/deatrich/">https://github.com/deatrich/</a></p>
+</dd>
+<dd><p><a href="https://github.com/deatrich/doc-with-pandoc-markdown">https://github.com/deatrich/doc-with-pandoc-markdown</a></p>
+</dd>
+<dd><p><a href="https://deatrich.github.io/console-syntax/">https://deatrich.github.io/console-syntax/</a></p>
+</dd>
+<dd><p><a href="https://deatrich.github.io/doc-with-pandoc-markdown/current/doc-with-pandoc-markdown.html">https://deatrich.github.io/doc-with-pandoc-markdown/current/doc-with-pandoc-markdown.html</a></p>
+</dd>
+<dd><p><a href="https://deatrich.github.io/doc-with-pandoc-markdown/current/doc-with-pandoc-markdown.pdf">https://deatrich.github.io/doc-with-pandoc-markdown/current/doc-with-pandoc-markdown.pdf</a></p>
+</dd>
+<dd><p><a href="https://deatrich.github.io/doc-with-pandoc-markdown/current/doc-with-pandoc-markdown.docx">https://deatrich.github.io/doc-with-pandoc-markdown/current/doc-with-pandoc-markdown.docx</a></p>
+</dd>
+<dt><a href="#chapter-2">Creating a Pandoc workspace</a>:</dt>
+<dd><p><a href="https://help.ubuntu.com/community/Nano">https://help.ubuntu.com/community/Nano</a></p>
+</dd>
+<dd><p><a href="https://manpages.ubuntu.com/manpages/impish/man1/le.1.html">https://manpages.ubuntu.com/manpages/impish/man1/le.1.html</a></p>
+</dd>
+<dd><p><a href="https://code-industry.net/masterpdfeditor/">https://code-industry.net/masterpdfeditor/</a></p>
+</dd>
+<dd><p><a href="https://code-industry.net/free-pdf-editor/#get">https://code-industry.net/free-pdf-editor/#get</a></p>
+</dd>
+<dd><p><a href="https://en.wikipedia.org/wiki/Tar_(computing)">https://en.wikipedia.org/wiki/Tar_(computing)</a></p>
+</dd>
+<dd><p><a href="https://en.wikipedia.org/wiki/GNU_Aspell">https://en.wikipedia.org/wiki/GNU_Aspell</a></p>
+</dd>
+<dd><p><a href="https://en.wikipedia.org/wiki/Hunspell">https://en.wikipedia.org/wiki/Hunspell</a></p>
+</dd>
+<dd><p><a href="https://www.lua.org/about.html">https://www.lua.org/about.html</a></p>
+</dd>
+<dd><p><a href="http://aspell.net/man-html/Format-of-the-Personal-and-Replacement-Dictionaries.html">http://aspell.net/man-html/Format-of-the-Personal-and-Replacement-Dictionaries.html</a></p>
+</dd>
+<dt><a href="#chapter-3">Installing the project files</a>:</dt>
+<dd><p><a href="https://github.com/deatrich/console-syntax">https://github.com/deatrich/console-syntax</a></p>
+</dd>
+<dd><p><a href="https://en.wikipedia.org/wiki/Make_(software)">https://en.wikipedia.org/wiki/Make_(software)</a></p>
+</dd>
+<dd><p><a href="https://github.com/vincentdoerig/latex-css">https://github.com/vincentdoerig/latex-css</a></p>
+</dd>
+<dd><p><a href="https://www.garrickadenbuie.com/blog/pandoc-syntax-highlighting-examples/">https://www.garrickadenbuie.com/blog/pandoc-syntax-highlighting-examples/</a></p>
+</dd>
+<dd><p><a href="https://kate-editor.org/">https://kate-editor.org/</a></p>
+</dd>
+<dd><p><a href="https://deatrich.github.io/console-syntax/index.html#kate">https://deatrich.github.io/console-syntax/index.html#kate</a></p>
+</dd>
+<dd><p><a href="https://en.wikipedia.org/wiki/Vim_(text_editor)">https://en.wikipedia.org/wiki/Vim_(text_editor)</a></p>
+</dd>
+<dd><p><a href="https://deatrich.github.io/console-syntax/index.html#vim">https://deatrich.github.io/console-syntax/index.html#vim</a></p>
+</dd>
+<dt><a href="#chapter-4">Examples of Pandoc’s Markdown usage</a>:</dt>
+<dd><p><a href="https://pandoc.org/MANUAL.html#pandocs-markdown">https://pandoc.org/MANUAL.html#pandocs-markdown</a></p>
+</dd>
+<dd><p><a href="https://uoftcoders.github.io/studyGroup/lessons/misc/pandoc-intro/lesson/">https://uoftcoders.github.io/studyGroup/lessons/misc/pandoc-intro/lesson/</a></p>
+</dd>
+<dd><p><a href="https://www.flutterbys.com.au/stats/tut/tut17.3.html">https://www.flutterbys.com.au/stats/tut/tut17.3.html</a></p>
+</dd>
+<dd><p><a href="https://www.markdownguide.org/cheat-sheet/">https://www.markdownguide.org/cheat-sheet/</a></p>
+</dd>
+<dd><p><a href="https://users.ssc.wisc.edu/~hemken/Stataworkshops/stmd/Markdown/markdownelements1.html">https://users.ssc.wisc.edu/~hemken/Stataworkshops/stmd/Markdown/markdownelements1.html</a></p>
+</dd>
+<dd><p><a href="https://garrettgman.github.io/rmarkdown/authoring_pandoc_markdown.html">https://garrettgman.github.io/rmarkdown/authoring_pandoc_markdown.html</a></p>
+</dd>
+<dd><p><a href="https://cran.r-project.org/web/packages/gluedown/vignettes/literal-programming.html">https://cran.r-project.org/web/packages/gluedown/vignettes/literal-programming.html</a></p>
+</dd>
+<dd><p><a href="https://pandoc.org/MANUAL.html#pandocs-markdown">https://pandoc.org/MANUAL.html#pandocs-markdown</a></p>
+</dd>
+</dl>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
